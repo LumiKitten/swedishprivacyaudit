@@ -1,29 +1,3 @@
-// Mobile menu toggle
-const menuToggle = document.querySelector('.menu-toggle');
-const mainNav = document.querySelector('.main-nav');
-
-if (menuToggle && mainNav) {
-    menuToggle.addEventListener('click', () => {
-        const isOpen = mainNav.classList.toggle('open');
-        menuToggle.setAttribute('aria-expanded', isOpen);
-    });
-
-    // Close menu when clicking nav links
-    mainNav.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            mainNav.classList.remove('open');
-            menuToggle.setAttribute('aria-expanded', 'false');
-        });
-    });
-
-    // Close menu on outside click
-    document.addEventListener('click', (e) => {
-        if (!e.target.closest('.site-header')) {
-            mainNav.classList.remove('open');
-            menuToggle.setAttribute('aria-expanded', 'false');
-        }
-    });
-}
 
 // Template copy functionality
 const templates = {
@@ -189,9 +163,27 @@ if (themeToggle) {
 const navToggle = document.querySelector('.nav-toggle');
 const navLinks = document.querySelector('.nav-links');
 if (navToggle && navLinks) {
-    navToggle.addEventListener('click', () => {
-        navToggle.classList.toggle('active');
-        navLinks.classList.toggle('active');
+    const toggleMenu = (force) => {
+        const isActive = navToggle.classList.toggle('active', force);
+        navLinks.classList.toggle('active', force);
+        navToggle.setAttribute('aria-expanded', isActive);
+    };
+
+    navToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleMenu();
+    });
+
+    // Close menu on outside click
+    document.addEventListener('click', (e) => {
+        if (navLinks.classList.contains('active') && !navLinks.contains(e.target) && !navToggle.contains(e.target)) {
+            toggleMenu(false);
+        }
+    });
+
+    // Close menu when clicking nav links
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => toggleMenu(false));
     });
 }
 

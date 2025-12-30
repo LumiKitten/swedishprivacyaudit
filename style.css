@@ -418,43 +418,32 @@ li {
     }
 }
 
-/* 5-column grid for services */
+/* Refined grid for services: 3-column, left-justified, 1000px max-width, uniform height */
 .card-grid-5 {
-    padding: 0 var(--space-xl);
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 var(--space-md);
     display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 1fr;
     gap: var(--space-md);
 }
 
 .card-grid-5>.card {
-    min-width: 0;
+    grid-column: auto;
 }
 
 @media (max-width: 1000px) {
     .card-grid-5 {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr);
     }
 
-    .card-grid-5>.card:nth-child(4),
+    /* Handle the odd one if there were 5 in a 2-col grid */
     .card-grid-5>.card:nth-child(5) {
-        grid-column: span 1;
-    }
-
-    /* Center the last 2 cards */
-    .card-grid-5 {
-        justify-items: center;
-    }
-
-    .card-grid-5>.card:nth-child(4) {
-        grid-column: 1 / 2;
-        justify-self: end;
-        max-width: calc(100% - var(--space-md) / 2);
-    }
-
-    .card-grid-5>.card:nth-child(5) {
-        grid-column: 2 / 3;
-        justify-self: start;
-        max-width: calc(100% - var(--space-md) / 2);
+        grid-column: 1 / -1;
+        justify-self: center;
+        width: 100%;
+        max-width: 500px;
     }
 }
 
@@ -463,7 +452,7 @@ li {
         grid-template-columns: 1fr;
     }
 
-    .card-grid-5>.card:nth-child(4),
+    .card-grid-5>.card,
     .card-grid-5>.card:nth-child(5) {
         grid-column: 1;
         justify-self: stretch;
@@ -1940,6 +1929,8 @@ li {
         left: 0;
         right: 0;
         background: var(--bg);
+        display: flex;
+        /* Ensure it's flex even on mobile */
         flex-direction: column;
         padding: var(--space-md);
         gap: 0;
@@ -1949,6 +1940,7 @@ li {
         visibility: hidden;
         transition: all 0.3s ease;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        z-index: 200;
     }
 
     .nav-links.active {
@@ -1980,11 +1972,11 @@ li {
     }
 
     .nav-toggle.active span:first-child {
-        transform: rotate(45deg) translate(4px, 4px);
+        transform: translateY(4px) rotate(45deg);
     }
 
     .nav-toggle.active span:last-child {
-        transform: rotate(-45deg) translate(4px, -4px);
+        transform: translateY(-4px) rotate(-45deg);
     }
 
     /* Nav tooltips off on mobile */
