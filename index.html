@@ -414,6 +414,18 @@
 
     <div class="toast" id="toast" role="status" aria-live="polite">Mall kopierad till urklipp</div>
 
+    <!-- Confirm Dialog -->
+    <div class="confirm-overlay" id="confirm-overlay" hidden>
+        <div class="confirm-dialog" role="alertdialog" aria-modal="true" aria-labelledby="confirm-title">
+            <h3 id="confirm-title">Rensa all data?</h3>
+            <p>All spårningsdata kommer att raderas. Detta kan inte ångras.</p>
+            <div class="confirm-actions">
+                <button class="confirm-btn confirm-btn-cancel" id="confirm-cancel">Avbryt</button>
+                <button class="confirm-btn confirm-btn-danger" id="confirm-delete">Rensa</button>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 

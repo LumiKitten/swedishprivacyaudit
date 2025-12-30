@@ -453,12 +453,39 @@ function importTrackerData(file) {
 }
 
 function clearTrackerData() {
-    if (confirm('Är du säker på att du vill rensa all spårningsdata? Detta kan inte ångras.')) {
+    const overlay = document.getElementById('confirm-overlay');
+    const cancelBtn = document.getElementById('confirm-cancel');
+    const deleteBtn = document.getElementById('confirm-delete');
+
+    if (!overlay) return;
+
+    overlay.hidden = false;
+
+    const closeDialog = () => {
+        overlay.hidden = true;
+        cancelBtn.removeEventListener('click', handleCancel);
+        deleteBtn.removeEventListener('click', handleDelete);
+        overlay.removeEventListener('click', handleOverlayClick);
+    };
+
+    const handleCancel = () => closeDialog();
+
+    const handleDelete = () => {
         localStorage.removeItem(TRACKER_STORAGE_KEY);
         const nameInput = document.getElementById('tracker-name');
         if (nameInput) nameInput.value = '';
         renderTrackerGrid();
-    }
+        showToast('Data rensad');
+        closeDialog();
+    };
+
+    const handleOverlayClick = (e) => {
+        if (e.target === overlay) closeDialog();
+    };
+
+    cancelBtn.addEventListener('click', handleCancel);
+    deleteBtn.addEventListener('click', handleDelete);
+    overlay.addEventListener('click', handleOverlayClick);
 }
 
 // Initialize tracker

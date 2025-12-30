@@ -1136,44 +1136,80 @@ li {
     color: #fff;
 }
 
-.tracker-card-btn-check:hover {
+.tracker-card-btn-check:hover:not(:disabled) {
     background: var(--accent-hover);
+}
+
+.tracker-card-btn-check:disabled {
+    background: var(--border) !important;
+    border-color: var(--border) !important;
+    color: var(--text-secondary) !important;
+}
+
+@media (prefers-color-scheme: dark) {
+    .tracker-card-btn-check {
+        color: #1a1410;
+    }
 }
 
 .tracker-card-btn-remove {
     background: var(--surface);
-    border-color: var(--accent);
-    color: var(--accent);
+    border-color: var(--text-secondary);
+    color: var(--text);
     text-decoration: none;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.tracker-card-btn-remove:hover {
+.tracker-card-btn-remove:hover:not(:disabled) {
     background: var(--accent);
     color: #fff;
     text-decoration: none;
 }
 
 .tracker-card-btn-removed {
-    border-color: #5c7a4a;
-    color: #5c7a4a;
+    border-color: #3d5c34;
+    color: #3d5c34;
+    background: var(--surface);
 }
 
 .tracker-card-btn-removed:hover {
-    background: #5c7a4a;
+    background: #3d5c34;
     color: #fff;
 }
 
 .tracker-card-btn-visible {
-    border-color: #a65d4c;
-    color: #a65d4c;
+    border-color: #8a3d30;
+    color: #8a3d30;
+    background: var(--surface);
 }
 
 .tracker-card-btn-visible:hover {
-    background: #a65d4c;
+    background: #8a3d30;
     color: #fff;
+}
+
+@media (prefers-color-scheme: dark) {
+    .tracker-card-btn-removed {
+        border-color: #8fba82;
+        color: #8fba82;
+    }
+
+    .tracker-card-btn-removed:hover {
+        background: #5c7a4a;
+        color: #fff;
+    }
+
+    .tracker-card-btn-visible {
+        border-color: #d98a7a;
+        color: #d98a7a;
+    }
+
+    .tracker-card-btn-visible:hover {
+        background: #a65d4c;
+        color: #fff;
+    }
 }
 
 .tracker-actions {
@@ -1422,4 +1458,71 @@ li {
 .cta-button:hover {
     background: var(--bg-alt);
     text-decoration: none;
+}
+
+/* ===== CONFIRM DIALOG ===== */
+.confirm-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.confirm-overlay[hidden] {
+    display: none;
+}
+
+.confirm-dialog {
+    background: var(--surface);
+    padding: var(--space-lg);
+    max-width: 380px;
+    width: 90%;
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+}
+
+.confirm-dialog h3 {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    margin-bottom: var(--space-sm);
+}
+
+.confirm-dialog p {
+    color: var(--text-secondary);
+    font-size: 0.9375rem;
+    margin-bottom: var(--space-lg);
+}
+
+.confirm-actions {
+    display: flex;
+    gap: var(--space-sm);
+    justify-content: flex-end;
+}
+
+.confirm-btn {
+    padding: 0.6rem 1.25rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.confirm-btn:hover {
+    background: var(--bg-alt);
+}
+
+.confirm-btn-danger {
+    background: #8a3d30;
+    border-color: #8a3d30;
+    color: #fff;
+}
+
+.confirm-btn-danger:hover {
+    background: #6d3026;
 }
