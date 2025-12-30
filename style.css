@@ -165,6 +165,49 @@ li {
     border-bottom-color: var(--accent);
 }
 
+/* Nav tooltips */
+.nav-links a[data-tooltip] {
+    position: relative;
+}
+
+.nav-links a[data-tooltip]::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 8px;
+    padding: 0.4rem 0.6rem;
+    background: var(--text);
+    color: var(--bg);
+    font-size: 0.75rem;
+    white-space: nowrap;
+    border-radius: 3px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.15s, visibility 0.15s;
+    pointer-events: none;
+    z-index: 200;
+}
+
+.nav-links a[data-tooltip]:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Nav divider */
+.nav-divider {
+    width: 1px;
+    height: 1rem;
+    background: var(--border);
+    align-self: center;
+    margin: 0 0.25rem;
+}
+
+.nav-link-external {
+    color: var(--accent) !important;
+}
+
 .nav-toggle {
     display: none;
     flex-direction: column;
