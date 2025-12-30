@@ -163,7 +163,6 @@ li {
     background: var(--bg);
     /* Solid background to hide sliding menu */
 }
-}
 
 .nav-brand {
     font-family: var(--font-serif);
