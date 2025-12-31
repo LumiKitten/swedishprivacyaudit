@@ -1,0 +1,18 @@
+# Dependencies
+node_modules/
+
+# Dev/Editor
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.idea/
+.vscode/
+*.sublime-*
+
+# Working notes (not part of the public site)
+Swedish_Privacy_Removal_Guide.md
+
+# Logs
+*.log
+npm-debug.log*
