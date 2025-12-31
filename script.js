@@ -47,7 +47,16 @@ Enligt artikel 12(3) i GDPR ska ni svara inom 30 dagar från ursprunglig begära
 
 Med vänliga hälsningar,
 [Ditt namn]
-[Ditt personnummer]`
+[Ditt personnummer]`,
+
+    4: `Ämne: Begäran om länk till hantera synlighet
+
+Hej,
+
+Jag vill hantera min synlighet på Birthday.se.
+
+Med vänliga hälsningar,
+[Ditt Namn]`
 };
 
 const toast = document.getElementById('toast');
@@ -288,7 +297,8 @@ const trackerServices = [
         name: 'Birthday.se',
         searchUrl: 'https://www.birthday.se/sok?whowhere={name}&similar=true',
         removalUrl: 'mailto:info@birthday.se',
-        method: 'E-post'
+        method: 'BankID',
+        warning: 'Begär länk via e-post'
     },
     {
         id: 'upplysning',
