@@ -403,6 +403,17 @@
                         Om du byter webbläsare eller rensar webbläsardata försvinner informationen — använd "Exportera"
                         för säkerhetskopiering.
                     </div>
+
+                    <div class="tracker-reminder" id="tracker-reminder">
+                        <label class="reminder-toggle">
+                            <input type="checkbox" id="reminder-enabled">
+                            <span>Påminn mig att kontrollera igen om</span>
+                            <input type="number" id="reminder-days" value="30" min="1" max="365"
+                                class="reminder-days-input">
+                            <span>dagar</span>
+                        </label>
+                        <p class="reminder-note" id="reminder-note"></p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -426,6 +437,27 @@
             </div>
         </div>
     </div>
+
+    <!-- Back to top button -->
+    <button class="back-to-top" id="back-to-top" aria-label="Tillbaka till toppen" hidden>
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M10 16V4M4 10l6-6 6 6" />
+        </svg>
+    </button>
+
+    <!-- Dark mode toggle -->
+    <button class="theme-toggle" id="theme-toggle" aria-label="Växla mörkt/ljust läge">
+        <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2">
+            <circle cx="12" cy="12" r="5" />
+            <path
+                d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+        </svg>
+        <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+        </svg>
+    </button>
 
     <script src="script.js"></script>
 </body>

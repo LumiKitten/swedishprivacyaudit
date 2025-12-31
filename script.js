@@ -136,9 +136,93 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             }
 
             target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+            // Close mobile nav if open
+            const navLinks = document.querySelector('.nav-links');
+            const navToggle = document.querySelector('.nav-toggle');
+            if (navLinks && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                navToggle.classList.remove('active');
+            }
         }
     });
 });
+
+// Back to top button
+const backToTop = document.getElementById('back-to-top');
+if (backToTop) {
+    window.addEventListener('scroll', () => {
+        backToTop.hidden = window.scrollY < 400;
+    }, { passive: true });
+
+    backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+}
+
+// Dark mode toggle
+const themeToggle = document.getElementById('theme-toggle');
+if (themeToggle) {
+    // Check for saved theme preference
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    }
+
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        let newTheme;
+        if (currentTheme === 'dark' || (!currentTheme && prefersDark)) {
+            newTheme = 'light';
+        } else {
+            newTheme = 'dark';
+        }
+
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+    });
+}
+
+// Mobile nav toggle
+const navToggle = document.querySelector('.nav-toggle');
+const navLinks = document.querySelector('.nav-links');
+if (navToggle && navLinks) {
+    navToggle.addEventListener('click', () => {
+        navToggle.classList.toggle('active');
+        navLinks.classList.toggle('active');
+    });
+}
+
+// Active nav indicator on scroll
+const navAnchors = document.querySelectorAll('.nav-links a[href^="#"]');
+const sections = [];
+
+navAnchors.forEach(anchor => {
+    const href = anchor.getAttribute('href');
+    if (href !== '#') {
+        const section = document.querySelector(href);
+        if (section) sections.push({ anchor, section });
+    }
+});
+
+if (sections.length > 0) {
+    window.addEventListener('scroll', () => {
+        const scrollPos = window.scrollY + 100;
+
+        sections.forEach(({ anchor, section }) => {
+            const top = section.offsetTop;
+            const bottom = top + section.offsetHeight;
+
+            if (scrollPos >= top && scrollPos < bottom) {
+                anchor.classList.add('active');
+            } else {
+                anchor.classList.remove('active');
+            }
+        });
+    }, { passive: true });
+}
 
 // Populate mailto links with template body and handle clicks
 document.querySelectorAll('.email-link[data-template]').forEach(link => {
@@ -311,6 +395,25 @@ function renderTrackerGrid() {
     if (!grid) return;
 
     const data = getTrackerData();
+
+    // Check for stale services and show alert
+    const staleCount = trackerServices.filter(service => {
+        const serviceData = data.services[service.id];
+        return serviceData && serviceData.lastCheck && getDaysSince(serviceData.lastCheck) >= STALE_DAYS;
+    }).length;
+
+    let staleAlertEl = document.getElementById('stale-alert');
+    if (staleCount > 0) {
+        if (!staleAlertEl) {
+            staleAlertEl = document.createElement('div');
+            staleAlertEl.id = 'stale-alert';
+            staleAlertEl.className = 'stale-alert';
+            grid.parentNode.insertBefore(staleAlertEl, grid);
+        }
+        staleAlertEl.textContent = `⚠️ ${staleCount} tjänst${staleCount > 1 ? 'er' : ''} har inte kontrollerats på över 30 dagar.`;
+    } else if (staleAlertEl) {
+        staleAlertEl.remove();
+    }
 
     grid.innerHTML = trackerServices.map(service => {
         const serviceData = data.services[service.id] || {};
@@ -542,6 +645,110 @@ function initTracker() {
     // Clear button
     if (clearBtn) {
         clearBtn.addEventListener('click', clearTrackerData);
+    }
+
+    // Notification reminder
+    const reminderEnabled = document.getElementById('reminder-enabled');
+    const reminderDays = document.getElementById('reminder-days');
+    const reminderNote = document.getElementById('reminder-note');
+
+    if (reminderEnabled && reminderDays && reminderNote) {
+        // Load saved preferences
+        const savedReminder = localStorage.getItem('reminderEnabled') === 'true';
+        const savedDays = localStorage.getItem('reminderDays') || '30';
+        const reminderDate = localStorage.getItem('reminderDate');
+
+        reminderEnabled.checked = savedReminder;
+        reminderDays.value = savedDays;
+
+        // Check if notifications are supported and get permission status
+        const notifSupported = 'Notification' in window;
+        const notifPermission = notifSupported ? Notification.permission : 'denied';
+
+        // Disable toggle if notifications are denied
+        if (notifPermission === 'denied') {
+            reminderEnabled.disabled = true;
+            reminderDays.disabled = true;
+        }
+
+        // Update note - reads fresh data each time
+        const updateReminderNote = () => {
+            const currentReminderDate = localStorage.getItem('reminderDate');
+
+            if (notifPermission === 'denied') {
+                reminderNote.textContent = '⚠️ Notifieringar blockerade i webbläsaren.';
+                reminderNote.style.color = 'var(--text-muted)';
+            } else if (reminderEnabled.checked && currentReminderDate) {
+                const date = new Date(currentReminderDate);
+                reminderNote.textContent = `✓ Påminnelse: ${date.toLocaleDateString('sv-SE')} (vid nästa besök)`;
+                reminderNote.style.color = '';
+            } else if (reminderEnabled.checked) {
+                const days = parseInt(reminderDays.value) || 30;
+                reminderNote.textContent = `Påminnelse om ${days} dagar aktiverad.`;
+                reminderNote.style.color = '';
+            } else if (notifPermission === 'granted') {
+                reminderNote.textContent = '✓ Notifieringar tillåtna';
+                reminderNote.style.color = 'var(--text-muted)';
+            } else {
+                reminderNote.textContent = '';
+            }
+        };
+        updateReminderNote();
+
+        // Handle checkbox change
+        reminderEnabled.addEventListener('change', async () => {
+            if (reminderEnabled.checked) {
+                // Request notification permission only when enabling
+                if ('Notification' in window && Notification.permission === 'default') {
+                    const permission = await Notification.requestPermission();
+                    if (permission !== 'granted') {
+                        reminderEnabled.checked = false;
+                        reminderNote.textContent = 'Notifieringar nekades. Aktivera i webbläsarinställningar.';
+                        return;
+                    }
+                }
+
+                // Set reminder date
+                const days = parseInt(reminderDays.value) || 30;
+                const date = new Date();
+                date.setDate(date.getDate() + days);
+                localStorage.setItem('reminderDate', date.toISOString());
+                localStorage.setItem('reminderEnabled', 'true');
+                localStorage.setItem('reminderDays', days.toString());
+            } else {
+                localStorage.removeItem('reminderDate');
+                localStorage.setItem('reminderEnabled', 'false');
+            }
+            updateReminderNote();
+        });
+
+        // Handle days change
+        reminderDays.addEventListener('change', () => {
+            if (reminderEnabled.checked) {
+                const days = parseInt(reminderDays.value) || 30;
+                const date = new Date();
+                date.setDate(date.getDate() + days);
+                localStorage.setItem('reminderDate', date.toISOString());
+                localStorage.setItem('reminderDays', days.toString());
+                updateReminderNote();
+            }
+        });
+
+        // Check if reminder is due
+        if (savedReminder && reminderDate) {
+            const dueDate = new Date(reminderDate);
+            if (new Date() >= dueDate && 'Notification' in window && Notification.permission === 'granted') {
+                new Notification('Sekretessguiden', {
+                    body: 'Dags att kontrollera dina uppgifter hos söktjänsterna!',
+                    icon: 'favicon.svg'
+                });
+                // Reset reminder for next cycle
+                const days = parseInt(savedDays) || 30;
+                const newDate = new Date();
+                newDate.setDate(newDate.getDate() + days);
+                localStorage.setItem('reminderDate', newDate.toISOString());
+            }
+        }
     }
 
     // Initial render
