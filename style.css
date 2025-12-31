@@ -869,23 +869,6 @@ li {
     }
 }
 
-/* ===== PRINT ===== */
-@media print {
-
-    .nav,
-    .toast {
-        display: none;
-    }
-
-    .card-scroll {
-        overflow: visible;
-        flex-wrap: wrap;
-    }
-
-    .card {
-        flex: 1 1 300px;
-    }
-}
 
 /* ===== TRACKER ===== */
 .tracker {
@@ -1142,7 +1125,6 @@ li {
     border-top: 1px solid var(--border);
 }
 
-/* No full-width buttons - all 2x2 grid now */
 
 .tracker-card-btn {
     padding: 0.6rem 0.75rem;
@@ -2042,10 +2024,6 @@ li {
 
     .nav-divider {
         display: none;
-    }
-
-    .nav-toggle {
-        display: flex;
     }
 
     .nav-toggle span {
