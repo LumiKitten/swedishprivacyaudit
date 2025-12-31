@@ -639,6 +639,12 @@ li {
     margin-top: 0.25rem;
 }
 
+/* Override email-link monospace font when inside card-action */
+.card-action .email-link {
+    font-family: inherit;
+    font-size: inherit;
+}
+
 /* Service cards */
 .card-service {
     flex: 0 0 280px;
