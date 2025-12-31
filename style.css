@@ -1,14 +1,14 @@
 /* ===== VARIABLES ===== */
 :root {
-    --text: #1a1a1a;
-    --text-secondary: #555;
-    --text-muted: #777;
-    --bg: #fafafa;
-    --bg-alt: #f0f0f0;
-    --surface: #fff;
-    --border: #ddd;
-    --accent: #2a5caa;
-    --accent-hover: #1e4580;
+    --text: #2d1f14;
+    --text-secondary: #4a3a2d;
+    --text-muted: #6b5a47;
+    --bg: #f8f4ef;
+    --bg-alt: #ede6dc;
+    --surface: #fffcf8;
+    --border: #d4c4b0;
+    --accent: #5c3a1e;
+    --accent-hover: #3d2712;
 
     --font: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     --font-serif: 'IBM Plex Serif', Georgia, serif;
@@ -23,15 +23,15 @@
 
 @media (prefers-color-scheme: dark) {
     :root {
-        --text: #e8e8e8;
-        --text-secondary: #aaa;
-        --text-muted: #888;
-        --bg: #111;
-        --bg-alt: #1a1a1a;
-        --surface: #1e1e1e;
-        --border: #333;
-        --accent: #5a9cf5;
-        --accent-hover: #7bb3ff;
+        --text: #ede5d8;
+        --text-secondary: #c9bda8;
+        --text-muted: #a89880;
+        --bg: #1a1410;
+        --bg-alt: #2a2118;
+        --surface: #322820;
+        --border: #4a3f33;
+        --accent: #d4b88a;
+        --accent-hover: #e8d0a8;
     }
 }
 
@@ -946,34 +946,34 @@ li {
 }
 
 .tracker-status-removed {
-    background: #d4edda;
-    color: #155724;
+    background: #e5efe0;
+    color: #3d5c34;
 }
 
 .tracker-status-visible {
-    background: #f8d7da;
-    color: #721c24;
+    background: #f5e5e2;
+    color: #7a3d35;
 }
 
 .tracker-status-stale {
-    background: #fff3cd;
-    color: #856404;
+    background: #f5ecd4;
+    color: #6b5a2f;
 }
 
 @media (prefers-color-scheme: dark) {
     .tracker-status-removed {
-        background: #1e4a2b;
-        color: #a3d9a5;
+        background: #2a3d24;
+        color: #a8c9a0;
     }
 
     .tracker-status-visible {
-        background: #4a1e22;
-        color: #f5a3a8;
+        background: #3d2824;
+        color: #d9a8a0;
     }
 
     .tracker-status-stale {
-        background: #4a3f1e;
-        color: #f5dfa3;
+        background: #3d3524;
+        color: #d9c9a0;
     }
 }
 
@@ -999,31 +999,31 @@ li {
 }
 
 .tracker-method-bankid {
-    background: #e3f2fd;
-    color: #1565c0;
+    background: #e5efe0;
+    color: #3d5c34;
 }
 
 .tracker-method-email {
-    background: #fff3e0;
-    color: #e65100;
+    background: #f5ecd4;
+    color: #6b5a2f;
 }
 
 @media (prefers-color-scheme: dark) {
     .tracker-method-bankid {
-        background: #1a3a5c;
-        color: #90caf9;
+        background: #2a3d24;
+        color: #a8c9a0;
     }
 
     .tracker-method-email {
-        background: #4a2f1a;
-        color: #ffcc80;
+        background: #3d3524;
+        color: #d9c9a0;
     }
 }
 
 .tracker-card-warning {
     font-size: 0.8125rem;
-    color: #856404;
-    background: #fff3cd;
+    color: #7a3d35;
+    background: #f5e5e2;
     padding: 0.4rem 0.6rem;
     margin-top: var(--space-xs);
 }
@@ -1100,22 +1100,22 @@ li {
 }
 
 .tracker-card-btn-removed {
-    border-color: #28a745;
-    color: #28a745;
+    border-color: #5c7a4a;
+    color: #5c7a4a;
 }
 
 .tracker-card-btn-removed:hover {
-    background: #28a745;
+    background: #5c7a4a;
     color: #fff;
 }
 
 .tracker-card-btn-visible {
-    border-color: #dc3545;
-    color: #dc3545;
+    border-color: #a65d4c;
+    color: #a65d4c;
 }
 
 .tracker-card-btn-visible:hover {
-    background: #dc3545;
+    background: #a65d4c;
     color: #fff;
 }
 
@@ -1218,22 +1218,22 @@ li {
 }
 
 .info-box-warning {
-    border-left-color: #e65100;
-    background: #fff3e0;
+    border-left-color: #a65d4c;
+    background: #f5e5e2;
 }
 
 .info-box-success {
-    border-left-color: #28a745;
-    background: #d4edda;
+    border-left-color: #5c7a4a;
+    background: #e5efe0;
 }
 
 @media (prefers-color-scheme: dark) {
     .info-box-warning {
-        background: #4a2f1a;
+        background: #3d2824;
     }
 
     .info-box-success {
-        background: #1e4a2b;
+        background: #2a3d24;
     }
 }
 
