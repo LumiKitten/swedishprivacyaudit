@@ -2117,6 +2117,15 @@ li {
 
 /* ===== MOBILE NAV IMPROVEMENTS ===== */
 @media (max-width: 768px) {
+    .nav-inner {
+        padding-right: var(--space-md);
+    }
+
+    .nav-toggle {
+        display: flex;
+        margin-left: auto;
+    }
+
     .nav-links {
         position: fixed;
         top: 60px;
