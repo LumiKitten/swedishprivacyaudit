@@ -321,6 +321,7 @@ function renderTrackerGrid() {
             ? `<div class="tracker-card-warning">${service.warning}</div>`
             : '';
         const canSearch = service.searchUrl !== null;
+        const isVisible = serviceData.status === 'visible';
 
         return `
             <div class="tracker-card ${serviceData.status === 'removed' ? 'tracker-card-done' : ''}" data-service="${service.id}">
@@ -337,12 +338,16 @@ function renderTrackerGrid() {
                     <button class="tracker-card-btn tracker-card-btn-check" 
                             onclick="checkService('${service.id}')" 
                             ${!hasName || !canSearch ? 'disabled' : ''}
-                            ${!canSearch ? 'title="Kräver inloggning"' : (!hasName ? 'title="Ange ditt namn först"' : '')}>
+                            ${!canSearch ? 'data-tooltip="Kräver inloggning"' : (!hasName ? 'data-tooltip="Ange namn först"' : '')}>
                         Sök
                     </button>
                     ${isEmail
-                ? `<button class="tracker-card-btn tracker-card-btn-remove" onclick="openTrackerEmail('${service.id}')">Maila</button>`
-                : `<a class="tracker-card-btn tracker-card-btn-remove" href="${service.removalUrl}" target="_blank" rel="noopener">Ta bort</a>`
+                ? `<button class="tracker-card-btn tracker-card-btn-remove" 
+                                   onclick="openTrackerEmail('${service.id}')"
+                                   ${!isVisible ? 'disabled data-tooltip="Markera Kvar först"' : ''}>Maila</button>`
+                : `<button class="tracker-card-btn tracker-card-btn-remove" 
+                                   onclick="window.open('${service.removalUrl}', '_blank')"
+                                   ${!isVisible ? 'disabled data-tooltip="Markera Kvar först"' : ''}>Ta bort</button>`
             }
                     <button class="tracker-card-btn tracker-card-btn-removed" 
                             onclick="markService('${service.id}', 'removed')">
