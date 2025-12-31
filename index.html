@@ -17,31 +17,79 @@
 </head>
 
 <body>
-    <a href="#main" class="skip-link">Hoppa till huvudinnehåll</a>
+    <a href="#main" class="skip-link" data-i18n="skip">Hoppa till huvudinnehåll</a>
 
     <nav class="nav" aria-label="Huvudnavigering">
         <div class="nav-inner">
-            <a href="#" class="nav-brand">Sekretessguiden</a>
+            <a href="#" class="nav-brand" data-i18n="nav.brand">Sekretessguiden</a>
             <button class="nav-toggle" aria-label="Meny">
                 <span></span><span></span>
             </button>
             <div class="nav-links">
-                <a href="#steg-1" data-tooltip="Förbered">01</a>
-                <a href="#steg-2" data-tooltip="BankID-tjänster">02</a>
-                <a href="#steg-3" data-tooltip="E-posttjänster">03</a>
-                <a href="#steg-4" data-tooltip="Bekräfta">04</a>
-                <a href="#tracker" data-tooltip="Spårning">Spåra</a>
+                <a href="#steg-1" data-tooltip="Förbered" data-i18n="nav.step1"
+                    data-i18n-tooltip="nav.step1_tooltip">01</a>
+                <a href="#steg-2" data-tooltip="BankID-tjänster" data-i18n="nav.step2"
+                    data-i18n-tooltip="nav.step2_tooltip">02</a>
+                <a href="#steg-3" data-tooltip="E-posttjänster" data-i18n="nav.step3"
+                    data-i18n-tooltip="nav.step3_tooltip">03</a>
+                <a href="#steg-4" data-tooltip="Bekräfta" data-i18n="nav.step4"
+                    data-i18n-tooltip="nav.step4_tooltip">04</a>
+                <a href="#tracker" data-tooltip="Spårning" data-i18n="nav.tracker"
+                    data-i18n-tooltip="nav.tracker_tooltip">Spåra</a>
                 <span class="nav-divider"></span>
-                <a href="rattigheter/" class="nav-link-external" data-tooltip="Dina rättigheter">Rättigheter</a>
+                <a href="rattigheter/" class="nav-link-external" data-tooltip="Dina rättigheter" data-i18n="nav.rights"
+                    data-i18n-tooltip="nav.rights_tooltip">Rättigheter</a>
+            </div>
+            <div class="settings-dropdown" id="settings-dropdown">
+                <button class="settings-btn" id="settings-btn" aria-label="Inställningar" aria-expanded="false">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="3" />
+                        <path
+                            d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+                    </svg>
+                </button>
+                <div class="settings-menu" id="settings-menu">
+                    <div class="settings-item">
+                        <span class="settings-item-label">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <circle cx="12" cy="12" r="10" />
+                                <path
+                                    d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                            </svg>
+                            <span data-i18n="settings.language">Språk</span>
+                        </span>
+                        <div class="settings-toggle" id="lang-toggle">
+                            <button data-lang="sv" class="active">SV</button>
+                            <button data-lang="en">EN</button>
+                        </div>
+                    </div>
+                    <div class="settings-item">
+                        <span class="settings-item-label">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <circle cx="12" cy="12" r="5" />
+                                <path
+                                    d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+                            </svg>
+                            <span data-i18n="settings.theme">Tema</span>
+                        </span>
+                        <div class="settings-toggle" id="theme-toggle">
+                            <button data-theme="light" data-i18n="settings.light">Ljust</button>
+                            <button data-theme="dark" data-i18n="settings.dark">Mörkt</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
 
     <header class="hero">
         <div class="hero-inner">
-            <p class="hero-meta">Uppdaterad december 2025</p>
-            <h1>Ta bort dina personuppgifter från svenska söktjänster</h1>
-            <p class="hero-lead">En steg-för-steg guide för att radera din information från Ratsit, Hitta, Eniro och
+            <p class="hero-meta" data-i18n="hero.meta">Uppdaterad december 2025</p>
+            <h1 data-i18n="hero.title">Ta bort dina personuppgifter från svenska söktjänster</h1>
+            <p class="hero-lead" data-i18n="hero.lead">En steg-för-steg guide för att radera din information från
+                Ratsit, Hitta, Eniro och
                 andra öppna register.</p>
         </div>
     </header>
@@ -51,7 +99,8 @@
             <div class="intro-inner">
                 <div class="intro-number">i</div>
                 <div class="intro-text">
-                    <p>Denna guide innehåller direktlänkar till borttagningssidor samt juridiska mallar med hänvisning
+                    <p data-i18n="intro.text">Denna guide innehåller direktlänkar till borttagningssidor samt juridiska
+                        mallar med hänvisning
                         till
                         aktuella rättsfall. De flesta guider online är ofullständiga eller föråldrade.</p>
                 </div>
@@ -63,67 +112,73 @@
             <div class="step-header">
                 <div class="step-number">01</div>
                 <div class="step-title">
-                    <h2>Grundförutsättningar</h2>
-                    <p>Utan dessa steg återkommer din information inom 30 dagar</p>
+                    <h2 data-i18n="step1.title">Grundförutsättningar</h2>
+                    <p data-i18n="step1.subtitle">Utan dessa steg återkommer din information inom 30 dagar</p>
                 </div>
             </div>
 
             <div class="step-content">
                 <div class="split-layout">
                     <article class="card card-featured">
-                        <h3>Hemligt telefonnummer</h3>
-                        <p>Söktjänster köper data från telekomoperatörer. Stäng av denna källa först.</p>
+                        <h3 data-i18n="step1.phone.title">Hemligt telefonnummer</h3>
+                        <p data-i18n="step1.phone.desc">Söktjänster köper data från telekomoperatörer. Stäng av denna
+                            källa först.</p>
                         <ol>
-                            <li>Kontakta din operatör</li>
-                            <li>Begär hemligt nummer och återkalla samtycke till nummerupplysning</li>
-                            <li>Vänta 1–2 veckor för uppdatering</li>
+                            <li data-i18n="step1.phone.step1">Kontakta din operatör</li>
+                            <li data-i18n="step1.phone.step2">Begär hemligt nummer och återkalla samtycke till
+                                nummerupplysning</li>
+                            <li data-i18n="step1.phone.step3">Vänta 1–2 veckor för uppdatering</li>
                         </ol>
-                        <div class="card-quote">
+                        <div class="card-quote" data-i18n="step1.phone.quote">
                             "Jag vill ha hemligt telefonnummer och drar tillbaka mitt samtycke till nummerupplysning och
                             marknadsföring."
                         </div>
                         <div class="operator-links">
-                            <h4>Kontakta din operatör</h4>
+                            <h4 data-i18n="step1.phone.operators">Kontakta din operatör</h4>
                             <ul>
                                 <li><a href="https://www.telia.se/privat/mitt-telia" target="_blank"
-                                        rel="noopener">Telia</a> – Mitt Telia eller ring 90 200</li>
+                                        rel="noopener">Telia</a> – Mitt Telia <span data-i18n="step1.phone.orcall">eller
+                                        ring</span> 90 200</li>
                                 <li><a href="https://www.tele2.se/mitt-tele2" target="_blank" rel="noopener">Tele2</a> –
-                                    Mitt Tele2 eller ring 90 222</li>
+                                    Mitt Tele2 <span data-i18n="step1.phone.orcall">eller ring</span> 90 222</li>
                                 <li><a href="https://www.telenor.se/mitt-telenor" target="_blank"
-                                        rel="noopener">Telenor</a> – Mitt Telenor eller ring 020-222 222</li>
+                                        rel="noopener">Telenor</a> – Mitt Telenor <span
+                                        data-i18n="step1.phone.orcall">eller ring</span> 020-222 222</li>
                                 <li><a href="https://www.tre.se/mitt3" target="_blank" rel="noopener">Tre</a> – Mitt3
-                                    eller ring 0735-300 400</li>
+                                    <span data-i18n="step1.phone.orcall">eller ring</span> 0735-300 400
+                                </li>
                             </ul>
                         </div>
                     </article>
 
                     <div class="stacked-cards">
                         <article class="card">
-                            <h3>SPAR-registret</h3>
-                            <p>Stoppa staten från att sälja din adress till marknadsförare.</p>
+                            <h3 data-i18n="step1.spar.title">SPAR-registret</h3>
+                            <p data-i18n="step1.spar.desc">Stoppa staten från att sälja din adress till marknadsförare.
+                            </p>
                             <div class="card-action">
                                 <a href="https://www.statenspersonadressregister.se/" target="_blank"
                                     rel="noopener">statenspersonadressregister.se</a>
-                                <span>Logga in med BankID → Aktivera reklamspärr</span>
+                                <span data-i18n="step1.spar.action">Logga in med BankID → Aktivera reklamsparr</span>
                             </div>
                         </article>
 
                         <article class="card">
-                            <h3>NIX-telefon</h3>
-                            <p>Blockera oönskade säljsamtal.</p>
+                            <h3 data-i18n="step1.nix.title">NIX-telefon</h3>
+                            <p data-i18n="step1.nix.desc">Blockera oönskade säljsamtal.</p>
                             <div class="card-action">
                                 <a href="https://nixtelefon.org/" target="_blank" rel="noopener">nixtelefon.org</a>
-                                <span>Ange ditt telefonnummer</span>
+                                <span data-i18n="step1.nix.action">Ange ditt telefonnummer</span>
                             </div>
                         </article>
 
                         <article class="card">
-                            <h3>NIX-adresserat</h3>
-                            <p>Stoppa adresserad direktreklam.</p>
+                            <h3 data-i18n="step1.nixaddr.title">NIX-adresserat</h3>
+                            <p data-i18n="step1.nixaddr.desc">Stoppa adresserad direktreklam.</p>
                             <div class="card-action">
                                 <a href="https://www.swedma.se/nix-adresserat/" target="_blank"
                                     rel="noopener">swedma.se/nix-adresserat</a>
-                                <span>Registrera via BankID</span>
+                                <span data-i18n="step1.nixaddr.action">Registrera via BankID</span>
                             </div>
                         </article>
                     </div>
@@ -136,8 +191,8 @@
             <div class="step-header">
                 <div class="step-number">02</div>
                 <div class="step-title">
-                    <h2 id="steg-2-title">Ta bort från söktjänster</h2>
-                    <p>Använd dessa direktlänkar för borttagning via BankID</p>
+                    <h2 id="steg-2-title" data-i18n="step2.title">Ta bort från söktjänster</h2>
+                    <p data-i18n="step2.subtitle">Använd dessa direktlänkar för borttagning via BankID</p>
                 </div>
             </div>
 
@@ -146,81 +201,86 @@
                     <article class="card card-service">
                         <div class="card-service-header">
                             <h3>Ratsit</h3>
-                            <span class="tag">Permanent borttagning</span>
+                            <span class="tag" data-i18n="tag.permanent">Permanent borttagning</span>
                         </div>
-                        <p>Den vanliga "Dölj"-funktionen varar endast 12 månader. Denna länk ger fullständig
+                        <p data-i18n="service.ratsit.desc">Den vanliga "Dölj"-funktionen varar endast 12 månader. Denna
+                            länk ger fullständig
                             borttagning.
                         </p>
                         <div class="card-action">
                             <a href="https://www.ratsit.se/tabort" target="_blank" rel="noopener">ratsit.se/tabort</a>
-                            <span>Logga in med BankID → Bekräfta</span>
+                            <span data-i18n="service.ratsit.action">Logga in med BankID → Bekräfta</span>
                         </div>
                     </article>
 
                     <article class="card card-service">
                         <div class="card-service-header">
                             <h3>Hitta.se</h3>
-                            <span class="tag">Omedelbar</span>
+                            <span class="tag" data-i18n="tag.immediate">Omedelbar</span>
                         </div>
-                        <p>Sök ditt nummer eller namn, klicka "Ta bort" och signera.</p>
+                        <p data-i18n="service.hitta.desc">Sök ditt nummer eller namn, klicka "Ta bort" och signera.</p>
                         <div class="card-action">
                             <a href="https://www.hitta.se/kontakta-oss/ta-bort-kontaktsida" target="_blank"
                                 rel="noopener">hitta.se/ta-bort</a>
-                            <span>Signera med BankID</span>
+                            <span data-i18n="service.hitta.action">Signera med BankID</span>
                         </div>
                     </article>
 
                     <article class="card card-service">
                         <div class="card-service-header">
                             <h3>Eniro</h3>
-                            <span class="tag">Omedelbar</span>
+                            <span class="tag" data-i18n="tag.immediate">Omedelbar</span>
                         </div>
-                        <p>Sök din profil, välj "Uppdatera" och sedan "Ta bort profil helt".</p>
+                        <p data-i18n="service.eniro.desc">Sök din profil, välj "Uppdatera" och sedan "Ta bort profil
+                            helt".</p>
                         <div class="card-action">
                             <a href="https://uppdatera.eniro.se/person" target="_blank"
                                 rel="noopener">uppdatera.eniro.se</a>
-                            <span>Logga in med BankID</span>
+                            <span data-i18n="service.eniro.action">Logga in med BankID</span>
                         </div>
                     </article>
 
                     <article class="card card-service">
                         <div class="card-service-header">
                             <h3>Merinfo</h3>
-                            <span class="tag">Snabb</span>
+                            <span class="tag" data-i18n="tag.fast">Snabb</span>
                         </div>
-                        <p>Välj "Jag vill ta bort mig" och logga in.</p>
+                        <p data-i18n="service.merinfo.desc">Välj "Jag vill ta bort mig" och logga in.</p>
                         <div class="card-action">
                             <a href="https://redigera.merinfo.se/" target="_blank"
                                 rel="noopener">redigera.merinfo.se</a>
-                            <span>Logga in med BankID</span>
+                            <span data-i18n="service.merinfo.action">Logga in med BankID</span>
                         </div>
                     </article>
 
                     <article class="card card-service">
                         <div class="card-service-header">
                             <h3>MrKoll</h3>
-                            <span class="tag tag-note">Kräver uppföljning</span>
+                            <span class="tag tag-note" data-i18n="tag.followup">Kräver uppföljning</span>
                         </div>
-                        <p>Återpublicerar ofta efter 30 dagar. Kontrollera regelbundet eller maila <a
-                                href="mailto:hej@nusvar.se" class="email-link" data-template="1">hej@nusvar.se</a>.</p>
+                        <p><span data-i18n="service.mrkoll.desc">Återpublicerar ofta efter 30 dagar. Kontrollera
+                                regelbundet eller maila</span> <a href="mailto:hej@nusvar.se" class="email-link"
+                                data-template="1">hej@nusvar.se</a>.</p>
                         <div class="card-action">
                             <a href="https://mrkoll.se/om/andra-uppgifter" target="_blank"
                                 rel="noopener">mrkoll.se/andra-uppgifter</a>
-                            <span>Välj "Dölj" för adress och telefon</span>
+                            <span data-i18n="service.mrkoll.action">Välj "Dölj" för adress och telefon</span>
                         </div>
                     </article>
 
                     <article class="card card-service">
                         <div class="card-service-header">
                             <h3>Birthday.se</h3>
-                            <span class="tag tag-note">Kräver e-post först</span>
+                            <span class="tag tag-note" data-i18n="tag.emailfirst">Kräver e-post först</span>
                         </div>
-                        <p>Begär länk till hanteringsportalen via e-post, logga sedan in med BankID och välj "Helt
+                        <p data-i18n="service.birthday.desc">Begär länk till hanteringsportalen via e-post, logga sedan
+                            in med BankID och välj "Helt
                             dold".</p>
                         <div class="card-action">
-                            <a href="mailto:info@birthday.se" class="email-link" data-template="4">Begär länk via
+                            <a href="mailto:info@birthday.se" class="email-link" data-template="4"
+                                data-i18n="service.birthday.link">Begär länk via
                                 info@birthday.se</a>
-                            <span>Bearbetningstid: upp till 60 minuter</span>
+                            <span data-i18n="service.birthday.action">Bearbetningstid: upp till 60 minuter</span>
                         </div>
                     </article>
                 </div>
@@ -232,8 +292,8 @@
             <div class="step-header">
                 <div class="step-number">03</div>
                 <div class="step-title">
-                    <h2>Tjänster som kräver e-post</h2>
-                    <p>Dessa har inte BankID-verifiering eller hävdar undantag</p>
+                    <h2 data-i18n="step3.title">Tjänster som kräver e-post</h2>
+                    <p data-i18n="step3.subtitle">Dessa har inte BankID-verifiering eller hävdar undantag</p>
                 </div>
             </div>
 
@@ -246,20 +306,22 @@
                     <div class="email-item email-item-difficult">
                         <div class="email-name">Krimfup.se</div>
                         <a href="mailto:info@krimfup.se" class="email-link" data-template="2">info@krimfup.se</a>
-                        <div class="email-note">Svår att få borttagning från. Börja med mall 2.</div>
+                        <div class="email-note" data-i18n="email.krimfup.note">Svår att få borttagning från. Börja med
+                            mall 2.</div>
                     </div>
                     <div class="email-item email-item-difficult">
                         <div class="email-name">Lexbase.se</div>
                         <a href="mailto:info@lexbase.se" class="email-link" data-template="2">info@lexbase.se</a>
-                        <div class="email-note">Hävdar utgivningsbevis. Börja med mall 2.</div>
+                        <div class="email-note" data-i18n="email.lexbase.note">Hävdar utgivningsbevis. Börja med mall 2.
+                        </div>
                     </div>
                 </div>
 
                 <div class="templates">
                     <div class="template">
                         <div class="template-header">
-                            <h3>Mall 1: Standardbegäran</h3>
-                            <button class="copy-btn" data-template="1">Kopiera</button>
+                            <h3 data-i18n="template1.title">Mall 1: Standardbegäran</h3>
+                            <button class="copy-btn" data-template="1" data-i18n="copy">Kopiera</button>
                         </div>
                         <div class="template-body" id="template-1">
                             <p><strong>Ämne:</strong> Begäran om radering enligt GDPR artikel 17</p>
@@ -277,10 +339,11 @@
 
                     <div class="template template-strong">
                         <div class="template-header">
-                            <h3>Mall 2: Begäran med rättslig hänvisning</h3>
-                            <button class="copy-btn" data-template="2">Kopiera</button>
+                            <h3 data-i18n="template2.title">Mall 2: Begäran med rättslig hänvisning</h3>
+                            <button class="copy-btn" data-template="2" data-i18n="copy">Kopiera</button>
                         </div>
-                        <p class="template-note">För tjänster som hävdar utgivningsbevis eller inte svarar. Hänvisar
+                        <p class="template-note" data-i18n="template2.note">För tjänster som hävdar utgivningsbevis
+                            eller inte svarar. Hänvisar
                             till
                             Kammarrättens mål 6027-23.</p>
                         <div class="template-body" id="template-2">
@@ -309,21 +372,22 @@
             <div class="step-header">
                 <div class="step-number">04</div>
                 <div class="step-title">
-                    <h2>Ta bort från sökresultat</h2>
-                    <p>Google kan visa cachade resultat i flera veckor efter borttagning</p>
+                    <h2 data-i18n="step4.title">Ta bort från sökresultat</h2>
+                    <p data-i18n="step4.subtitle">Google kan visa cachade resultat i flera veckor efter borttagning</p>
                 </div>
             </div>
 
             <div class="step-content step-content-narrow">
                 <ol class="action-list">
                     <li>
-                        Gå till <a href="https://search.google.com/search-console/remove-outdated-content"
-                            target="_blank" rel="noopener">Googles verktyg för föråldrat innehåll</a>
+                        <span data-i18n="step4.action1">Gå till</span> <a
+                            href="https://search.google.com/search-console/remove-outdated-content" target="_blank"
+                            rel="noopener" data-i18n="step4.action1.link">Googles verktyg för föråldrat innehåll</a>
                     </li>
-                    <li>
+                    <li data-i18n="step4.action2">
                         Ange URL:en till din tidigare profilsida
                     </li>
-                    <li>
+                    <li data-i18n="step4.action3">
                         Klicka "Request Removal" – borttaget inom 24–48 timmar
                     </li>
                 </ol>
@@ -333,19 +397,21 @@
         <!-- Underhåll -->
         <section class="maintenance">
             <div class="maintenance-inner">
-                <h2>Regelbundet underhåll</h2>
+                <h2 data-i18n="maintenance.title">Regelbundet underhåll</h2>
                 <div class="maintenance-grid">
                     <div class="maintenance-item">
-                        <div class="maintenance-interval">30 dagar</div>
-                        <p>Kontrollera MrKoll – de återpublicerar frekvent</p>
+                        <div class="maintenance-interval" data-i18n="maintenance.30days">30 dagar</div>
+                        <p data-i18n="maintenance.30days.text">Kontrollera MrKoll – de återpublicerar frekvent</p>
                     </div>
                     <div class="maintenance-item">
-                        <div class="maintenance-interval">12 månader</div>
-                        <p>Förnya Ratsit-spärren om du använde "Dölj" istället för "Ta bort"</p>
+                        <div class="maintenance-interval" data-i18n="maintenance.12months">12 månader</div>
+                        <p data-i18n="maintenance.12months.text">Förnya Ratsit-spärren om du använde "Dölj" istället för
+                            "Ta bort"</p>
                     </div>
                     <div class="maintenance-item">
-                        <div class="maintenance-interval">Vid byte</div>
-                        <p>Verifiera hemligt nummer efter operatörs- eller abonnemangsbyte</p>
+                        <div class="maintenance-interval" data-i18n="maintenance.change">Vid byte</div>
+                        <p data-i18n="maintenance.change.text">Verifiera hemligt nummer efter operatörs- eller
+                            abonnemangsbyte</p>
                     </div>
                 </div>
             </div>
@@ -354,23 +420,26 @@
         <!-- FAQ -->
         <section class="faq">
             <div class="faq-inner">
-                <h2>Vanliga frågor</h2>
+                <h2 data-i18n="faq.title">Vanliga frågor</h2>
                 <details class="faq-item">
-                    <summary>Fungerar detta för Lexbase och Krimfup?</summary>
-                    <p>Det är svårt. Använd mall 2 och hänvisa till Kammarrättens dom. Som alternativ, fokusera på att
+                    <summary data-i18n="faq.lexbase.q">Fungerar detta för Lexbase och Krimfup?</summary>
+                    <p data-i18n="faq.lexbase.a">Det är svårt. Använd mall 2 och hänvisa till Kammarrättens dom. Som
+                        alternativ, fokusera på att
                         ta
                         bort Google-sökresultaten så informationen blir svårare att hitta.</p>
                 </details>
                 <details class="faq-item">
-                    <summary>Hur fungerar Birthday.se:s nya självbetjäning?</summary>
-                    <p>Birthday.se har infört en BankID-portal för synlighetshantering. Maila info@birthday.se för att
+                    <summary data-i18n="faq.birthday.q">Hur fungerar Birthday.se:s nya självbetjäning?</summary>
+                    <p data-i18n="faq.birthday.a">Birthday.se har infört en BankID-portal för synlighetshantering. Maila
+                        info@birthday.se för att
                         få en personlig länk till appen.minauppgifter.se. Där kan du välja mellan "Helt synlig", "Delvis
                         synlig" (endast namn) eller "Helt dold" (rekommenderas). Ändringen träder i kraft inom 60
                         minuter.</p>
                 </details>
                 <details class="faq-item">
-                    <summary>Kan jag anlita en betaltjänst?</summary>
-                    <p>Tjänster som DoldAdress finns, men de utför samma steg som beskrivs här. Processen tar cirka 20
+                    <summary data-i18n="faq.service.q">Kan jag anlita en betaltjänst?</summary>
+                    <p data-i18n="faq.service.a">Tjänster som DoldAdress finns, men de utför samma steg som beskrivs
+                        här. Processen tar cirka 20
                         minuter.</p>
                 </details>
             </div>
@@ -380,19 +449,21 @@
         <section id="tracker" class="tracker">
             <div class="tracker-inner">
                 <button class="tracker-toggle" aria-expanded="false" aria-controls="tracker-content">
-                    <h2>Spåra din status</h2>
+                    <h2 data-i18n="tracker.title">Spåra din status</h2>
                     <span class="tracker-toggle-icon">+</span>
                 </button>
 
                 <div id="tracker-content" class="tracker-content" hidden>
                     <div class="tracker-intro">
-                        <p>Håll koll på vilka tjänster som fortfarande visar dina uppgifter. All data sparas endast
+                        <p data-i18n="tracker.intro">Håll koll på vilka tjänster som fortfarande visar dina uppgifter.
+                            All data sparas endast
                             lokalt i din webbläsare.</p>
                     </div>
 
                     <div class="tracker-name-section">
-                        <label for="tracker-name">Ditt namn (för söklänkar)</label>
-                        <input type="text" id="tracker-name" class="tracker-input" placeholder="Förnamn Efternamn">
+                        <label for="tracker-name" data-i18n="tracker.name.label">Ditt namn (för söklänkar)</label>
+                        <input type="text" id="tracker-name" class="tracker-input" placeholder="Förnamn Efternamn"
+                            data-i18n-placeholder="tracker.name.placeholder">
                     </div>
 
                     <div class="tracker-grid" id="tracker-grid">
@@ -400,27 +471,33 @@
                     </div>
 
                     <div class="tracker-actions">
-                        <button class="tracker-btn" id="tracker-export">Exportera data</button>
-                        <button class="tracker-btn tracker-btn-secondary" id="tracker-import-btn">Importera
+                        <button class="tracker-btn" id="tracker-export" data-i18n="tracker.export">Exportera
+                            data</button>
+                        <button class="tracker-btn tracker-btn-secondary" id="tracker-import-btn"
+                            data-i18n="tracker.import">Importera
                             data</button>
                         <input type="file" id="tracker-import" accept=".json" hidden>
-                        <button class="tracker-btn tracker-btn-danger" id="tracker-clear">Rensa all data</button>
+                        <button class="tracker-btn tracker-btn-danger" id="tracker-clear"
+                            data-i18n="tracker.clear">Rensa all data</button>
                     </div>
 
                     <div class="tracker-privacy-notice">
-                        <strong>Sekretess:</strong> Ingen data skickas till någon server. Allt sparas endast i din
-                        webbläsare (localStorage).
-                        Om du byter webbläsare eller rensar webbläsardata försvinner informationen — använd "Exportera"
-                        för säkerhetskopiering.
+                        <strong data-i18n="tracker.privacy">Sekretess:</strong> <span
+                            data-i18n="tracker.privacy.text">Ingen data skickas till någon server. Allt sparas endast i
+                            din
+                            webbläsare (localStorage).
+                            Om du byter webbläsare eller rensar webbläsardata försvinner informationen — använd
+                            "Exportera"
+                            för säkerhetskopiering.</span>
                     </div>
 
                     <div class="tracker-reminder" id="tracker-reminder">
                         <label class="reminder-toggle">
                             <input type="checkbox" id="reminder-enabled">
-                            <span>Påminn mig att kontrollera igen om</span>
+                            <span data-i18n="tracker.reminder">Påminn mig att kontrollera igen om</span>
                             <input type="number" id="reminder-days" value="30" min="1" max="365"
                                 class="reminder-days-input">
-                            <span>dagar</span>
+                            <span data-i18n="tracker.reminder.days">dagar</span>
                         </label>
                         <p class="reminder-note" id="reminder-note"></p>
                     </div>
@@ -430,8 +507,9 @@
     </main>
 
     <footer class="footer">
-        <p>Senast uppdaterad: December 2025</p>
-        <p>Denna guide är framtagen i informationssyfte. För juridisk rådgivning, kontakta en kvalificerad jurist.</p>
+        <p data-i18n="footer.updated">Senast uppdaterad: December 2025</p>
+        <p data-i18n="footer.disclaimer">Denna guide är framtagen i informationssyfte. För juridisk rådgivning, kontakta
+            en kvalificerad jurist.</p>
     </footer>
 
     <div class="toast" id="toast" role="status" aria-live="polite">Mall kopierad till urklipp</div>
@@ -449,23 +527,9 @@
     </div>
 
     <!-- Back to top button -->
-    <button class="back-to-top" id="back-to-top" aria-label="Tillbaka till toppen" hidden>
+    <button class="back-to-top" id="back-to-top" aria-label="Tillbaka till toppen" data-i18n-aria="backtotop" hidden>
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M10 16V4M4 10l6-6 6 6" />
-        </svg>
-    </button>
-
-    <!-- Dark mode toggle -->
-    <button class="theme-toggle" id="theme-toggle" aria-label="Växla mörkt/ljust läge">
-        <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-            stroke-width="2">
-            <circle cx="12" cy="12" r="5" />
-            <path
-                d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
-        </svg>
-        <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-            stroke-width="2">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
         </svg>
     </button>
 
