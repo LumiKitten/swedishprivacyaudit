@@ -1,4 +1,3 @@
-
 // ===== TRACKER CONSTANTS (must be at top for hoisting) =====
 const TRACKER_STORAGE_KEY = 'privacyTrackerData';
 const STALE_DAYS = 30;
@@ -139,6 +138,9 @@ const translations = {
         'tracker.status.visible': 'Synlig',
         'tracker.last': 'Senast:',
         'tracker.never': 'Aldrig kontrollerat',
+        'tracker.tooltip.login': 'Kräver inloggning',
+        'tracker.tooltip.name': 'Ange namn först',
+        'tracker.tooltip.markvisible': 'Markera Kvar först',
 
         // Confirm dialog
         'confirm.title': 'Rensa all data?',
@@ -378,6 +380,9 @@ const translations = {
         'tracker.status.visible': 'Visible',
         'tracker.last': 'Last:',
         'tracker.never': 'Never checked',
+        'tracker.tooltip.login': 'Requires login',
+        'tracker.tooltip.name': 'Enter name first',
+        'tracker.tooltip.markvisible': 'Mark Still there first',
 
         // Confirm dialog
         'confirm.title': 'Clear all data?',
@@ -939,9 +944,9 @@ function saveTrackerData(data) {
 }
 
 function formatDate(dateString) {
-    if (!dateString) return 'Aldrig kontrollerat';
+    if (!dateString) return t('tracker.never');
     const date = new Date(dateString);
-    return date.toLocaleDateString('sv-SE');
+    return date.toLocaleDateString(currentLang === 'sv' ? 'sv-SE' : 'en-US');
 }
 
 function getDaysSince(dateString) {
@@ -954,7 +959,7 @@ function getDaysSince(dateString) {
 
 function getStatusInfo(service, serviceData) {
     if (!serviceData || !serviceData.status) {
-        return { class: 'tracker-status-unknown', text: 'Okänd' };
+        return { class: 'tracker-status-unknown', text: t('tracker.status.unknown') };
     }
 
     const daysSince = getDaysSince(serviceData.lastCheck);
@@ -963,19 +968,19 @@ function getStatusInfo(service, serviceData) {
     if (daysSince >= STALE_DAYS) {
         return {
             class: 'tracker-status-stale',
-            text: `${daysSince}d sedan`
+            text: `${daysSince}d ${currentLang === 'sv' ? 'sedan' : 'ago'}`
         };
     }
 
     if (serviceData.status === 'removed') {
-        return { class: 'tracker-status-removed', text: 'Borttagen' };
+        return { class: 'tracker-status-removed', text: t('tracker.status.removed') };
     }
 
     if (serviceData.status === 'visible') {
-        return { class: 'tracker-status-visible', text: 'Synlig' };
+        return { class: 'tracker-status-visible', text: t('tracker.status.visible') };
     }
 
-    return { class: 'tracker-status-unknown', text: 'Okänd' };
+    return { class: 'tracker-status-unknown', text: t('tracker.status.unknown') };
 }
 
 function buildSearchUrl(service, name) {
@@ -1013,7 +1018,7 @@ function renderTrackerGrid() {
             staleAlertEl.className = 'stale-alert';
             grid.parentNode.insertBefore(staleAlertEl, grid);
         }
-        staleAlertEl.textContent = `⚠️ ${staleCount} tjänst${staleCount > 1 ? 'er' : ''} har inte kontrollerats på över 30 dagar.`;
+        staleAlertEl.textContent = staleCount > 1 ? t('stale.alert.plural').replace('{count}', staleCount) : t('stale.alert').replace('{count}', staleCount);
     } else if (staleAlertEl) {
         staleAlertEl.remove();
     }
@@ -1037,31 +1042,31 @@ function renderTrackerGrid() {
                 </div>
                 <div class="tracker-card-meta">
                     <span class="tracker-method tracker-method-${isEmail ? 'email' : 'bankid'}">${service.method}</span>
-                    <span class="tracker-card-date">Senast: ${formatDate(serviceData.lastCheck)}</span>
+                    <span class="tracker-card-date">${t('tracker.last')} ${formatDate(serviceData.lastCheck)}</span>
                 </div>
                 ${warningHtml}
                 <div class="tracker-card-actions">
                     <button class="tracker-card-btn tracker-card-btn-check" 
                             onclick="checkService('${service.id}')" 
                             ${!hasName || !canSearch ? 'disabled' : ''}
-                            ${!canSearch ? 'data-tooltip="Kräver inloggning"' : (!hasName ? 'data-tooltip="Ange namn först"' : '')}>
-                        Sök
+                            ${!canSearch ? `data-tooltip="${t('tracker.tooltip.login')}"` : (!hasName ? `data-tooltip="${t('tracker.tooltip.name')}"` : '')}>
+                        ${t('tracker.btn.search')}
                     </button>
                     ${isEmail
                 ? `<button class="tracker-card-btn tracker-card-btn-remove" 
                                    onclick="openTrackerEmail('${service.id}')"
-                                   ${!isVisible ? 'disabled data-tooltip="Markera Kvar först"' : ''}>Maila</button>`
+                                   ${!isVisible ? `disabled data-tooltip="${t('tracker.tooltip.markvisible')}"` : ''}>${t('tracker.btn.mail')}</button>`
                 : `<button class="tracker-card-btn tracker-card-btn-remove" 
                                    onclick="window.open('${service.removalUrl}', '_blank')"
-                                   ${!isVisible ? 'disabled data-tooltip="Markera Kvar först"' : ''}>Ta bort</button>`
+                                   ${!isVisible ? `disabled data-tooltip="${t('tracker.tooltip.markvisible')}"` : ''}>${t('tracker.btn.remove')}</button>`
             }
                     <button class="tracker-card-btn tracker-card-btn-removed" 
                             onclick="markService('${service.id}', 'removed')">
-                        Klar
+                        ${t('tracker.btn.done')}
                     </button>
                     <button class="tracker-card-btn tracker-card-btn-visible" 
                             onclick="markService('${service.id}', 'visible')">
-                        Kvar
+                        ${t('tracker.btn.visible')}
                     </button>
                 </div>
             </div>
@@ -1076,7 +1081,7 @@ function checkService(serviceId) {
     if (!service || !service.searchUrl) return;
 
     if (!data.name || !data.name.trim()) {
-        alert('Ange ditt namn först för att kunna söka.');
+        alert(t('alert.name'));
         return;
     }
 
@@ -1096,7 +1101,7 @@ function markService(serviceId, status) {
 
     saveTrackerData(data);
     renderTrackerGrid();
-    showToast('Status uppdaterad');
+    showToast(t('toast.status'));
 }
 
 function openTrackerEmail(serviceId) {
@@ -1152,7 +1157,7 @@ function importTrackerData(file) {
                 showToast();
             }
         } catch (err) {
-            alert('Kunde inte läsa filen. Kontrollera att det är en giltig JSON-fil.');
+            alert(t('alert.import'));
         }
     };
     reader.readAsText(file);
@@ -1181,7 +1186,7 @@ function clearTrackerData() {
         const nameInput = document.getElementById('tracker-name');
         if (nameInput) nameInput.value = '';
         renderTrackerGrid();
-        showToast('Data rensad');
+        showToast(t('toast.cleared'));
         closeDialog();
     };
 
@@ -1279,18 +1284,18 @@ function initTracker() {
             const currentReminderDate = localStorage.getItem('reminderDate');
 
             if (notifPermission === 'denied') {
-                reminderNote.textContent = '⚠️ Notifieringar blockerade i webbläsaren.';
+                reminderNote.textContent = t('notif.blocked');
                 reminderNote.style.color = 'var(--text-muted)';
             } else if (reminderEnabled.checked && currentReminderDate) {
                 const date = new Date(currentReminderDate);
-                reminderNote.textContent = `✓ Påminnelse: ${date.toLocaleDateString('sv-SE')} (vid nästa besök)`;
+                reminderNote.textContent = `${t('notif.scheduled')} ${date.toLocaleDateString(currentLang === 'sv' ? 'sv-SE' : 'en-US')} ${t('notif.nextvisit')}`;
                 reminderNote.style.color = '';
             } else if (reminderEnabled.checked) {
                 const days = parseInt(reminderDays.value) || 30;
-                reminderNote.textContent = `Påminnelse om ${days} dagar aktiverad.`;
+                reminderNote.textContent = t('notif.activated').replace('{days}', days);
                 reminderNote.style.color = '';
             } else if (notifPermission === 'granted') {
-                reminderNote.textContent = '✓ Notifieringar tillåtna';
+                reminderNote.textContent = t('notif.granted');
                 reminderNote.style.color = 'var(--text-muted)';
             } else {
                 reminderNote.textContent = '';
@@ -1306,7 +1311,7 @@ function initTracker() {
                     const permission = await Notification.requestPermission();
                     if (permission !== 'granted') {
                         reminderEnabled.checked = false;
-                        reminderNote.textContent = 'Notifieringar nekades. Aktivera i webbläsarinställningar.';
+                        reminderNote.textContent = t('notif.denied');
                         return;
                     }
                 }
@@ -1341,8 +1346,8 @@ function initTracker() {
         if (savedReminder && reminderDate) {
             const dueDate = new Date(reminderDate);
             if (new Date() >= dueDate && 'Notification' in window && Notification.permission === 'granted') {
-                new Notification('Sekretessguiden', {
-                    body: 'Dags att kontrollera dina uppgifter hos söktjänsterna!',
+                new Notification(t('notif.title'), {
+                    body: t('notif.body'),
                     icon: 'favicon.svg'
                 });
                 // Reset reminder for next cycle
@@ -1369,4 +1374,3 @@ if (document.readyState === 'loading') {
 } else {
     initTracker();
 }
-

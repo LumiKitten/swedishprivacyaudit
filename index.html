@@ -277,8 +277,8 @@
                             in med BankID och välj "Helt
                             dold".</p>
                         <div class="card-action">
-                            <a href="mailto:info@birthday.se" class="email-link" data-template="4"
-                                data-i18n="service.birthday.link">Begär länk via
+                            <a href="mailto:info@birthday.se" data-template="4" data-i18n="service.birthday.link">Begär
+                                länk via
                                 info@birthday.se</a>
                             <span data-i18n="service.birthday.action">Bearbetningstid: upp till 60 minuter</span>
                         </div>
@@ -517,11 +517,13 @@
     <!-- Confirm Dialog -->
     <div class="confirm-overlay" id="confirm-overlay" hidden>
         <div class="confirm-dialog" role="alertdialog" aria-modal="true" aria-labelledby="confirm-title">
-            <h3 id="confirm-title">Rensa all data?</h3>
-            <p>All spårningsdata kommer att raderas. Detta kan inte ångras.</p>
+            <h3 id="confirm-title" data-i18n="confirm.title">Rensa all data?</h3>
+            <p data-i18n="confirm.text">All spårningsdata kommer att raderas. Detta kan inte ångras.</p>
             <div class="confirm-actions">
-                <button class="confirm-btn confirm-btn-cancel" id="confirm-cancel">Avbryt</button>
-                <button class="confirm-btn confirm-btn-danger" id="confirm-delete">Rensa</button>
+                <button class="confirm-btn confirm-btn-cancel" id="confirm-cancel"
+                    data-i18n="confirm.cancel">Avbryt</button>
+                <button class="confirm-btn confirm-btn-danger" id="confirm-delete"
+                    data-i18n="confirm.delete">Rensa</button>
             </div>
         </div>
     </div>

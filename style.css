@@ -161,7 +161,6 @@ li {
     position: relative;
     z-index: 10;
     background: var(--bg);
-    /* Solid background to hide sliding menu */
 }
 
 .nav-brand {
@@ -243,7 +242,6 @@ li {
 .settings-dropdown {
     position: fixed;
     top: 12px;
-    /* Align with nav bar */
     right: var(--space-md);
     z-index: 1001;
 }
@@ -540,7 +538,6 @@ li {
     }
 }
 
-/* Refined grid for services: 3-column, left-justified, 1000px max-width, uniform height */
 .card-grid-5 {
     max-width: 1000px;
     margin: 0 auto;
@@ -560,7 +557,6 @@ li {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    /* Handle the odd one if there were 5 in a 2-col grid */
     .card-grid-5>.card:nth-child(5) {
         grid-column: 1 / -1;
         justify-self: center;
@@ -1126,7 +1122,7 @@ li {
     color: #6b5a2f;
 }
 
-/* Dark mode status overrides */
+/* Dark mode: system preference + manual override */
 @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) .tracker-status-removed {
         background: #2a3d24;
@@ -1289,7 +1285,6 @@ li {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
 }
 
-/* Tooltip arrow */
 .tracker-card-btn:disabled::before {
     content: '';
     position: absolute;
@@ -1571,7 +1566,6 @@ li {
     border-color: var(--accent);
 }
 
-/* Hide number input spinners */
 .reminder-days-input::-webkit-outer-spin-button,
 .reminder-days-input::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -2123,7 +2117,6 @@ li {
         transition: all 0.3s ease;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         z-index: -1;
-        /* Slide behind the .nav and .nav-inner */
     }
 
     .nav-links.active {
@@ -2181,7 +2174,6 @@ li {
         position: absolute;
         top: 50%;
         right: 60px;
-        /* To the left of hamburger menu */
         transform: translateY(-50%);
         z-index: 1001;
     }
