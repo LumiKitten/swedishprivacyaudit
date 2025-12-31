@@ -1849,7 +1849,9 @@ li {
 }
 
 :root[data-theme="light"] .back-to-top {
-    color: #fff;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--accent);
 }
 
 /* ===== THEME TOGGLE ===== */
