@@ -35,7 +35,7 @@
     }
 }
 
-/* Manual dark mode override */
+/* Dark mode override */
 :root[data-theme="dark"] {
     --text: #ede5d8;
     --text-secondary: #c9bda8;
@@ -48,7 +48,7 @@
     --accent-hover: #e8d0a8;
 }
 
-/* Manual light mode override */
+/* Light mode override */
 :root[data-theme="light"] {
     --text: #2d1f14;
     --text-secondary: #4a3a2d;
@@ -156,7 +156,7 @@ li {
     margin: 0 auto;
     padding: var(--space-sm) var(--space-md);
     padding-right: 75px;
-    /* Space for fixed settings icon */
+    /* Settings icon space */
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -197,7 +197,7 @@ li {
     border-bottom-color: var(--accent);
 }
 
-/* Nav tooltips */
+/* Tooltips */
 .nav-links a[data-tooltip] {
     position: relative;
 }
@@ -639,13 +639,13 @@ li {
     margin-top: 0.25rem;
 }
 
-/* Override email-link monospace font when inside card-action */
+/* Card-action email link override */
 .card-action .email-link {
     font-family: inherit;
     font-size: inherit;
 }
 
-/* Service cards */
+
 .card-service {
     flex: 0 0 280px;
 }
@@ -1135,7 +1135,7 @@ li {
     color: #6b5a2f;
 }
 
-/* Dark mode: system preference + manual override */
+/* Dark mode */
 @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) .tracker-status-removed {
         background: #2a3d24;
@@ -1997,7 +1997,7 @@ li {
     background: var(--bg-alt);
 }
 
-/* Show sun in dark mode, moon in light mode */
+/* Theme icons */
 .icon-sun {
     display: none;
 }
@@ -2183,7 +2183,7 @@ li {
         transform: translateY(-4px) rotate(-45deg);
     }
 
-    /* Nav tooltips off on mobile */
+    /* Hide tooltips */
     .nav-links a[data-tooltip]::after {
         display: none;
     }
@@ -2201,7 +2201,7 @@ li {
         left: var(--space-md);
     }
 
-    /* Hide settings icon on mobile - it appears in hamburger menu instead */
+    /* Settings in hamburger menu */
     .settings-dropdown {
         display: none;
     }

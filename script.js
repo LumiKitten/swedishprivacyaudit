@@ -1,8 +1,8 @@
-// ===== TRACKER CONSTANTS (must be at top for hoisting) =====
+// Tracker constants
 const TRACKER_STORAGE_KEY = 'privacyTrackerData';
 const STALE_DAYS = 30;
 
-// ===== TRANSLATIONS =====
+// Translations
 const translations = {
     sv: {
         // Navigation
@@ -501,7 +501,7 @@ function setLanguage(lang) {
     localStorage.setItem('language', lang);
     document.documentElement.lang = lang;
 
-    // Update all elements with data-i18n attribute
+
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.dataset.i18n;
         if (translations[lang][key]) {
@@ -509,7 +509,7 @@ function setLanguage(lang) {
         }
     });
 
-    // Update tooltips
+
     document.querySelectorAll('[data-i18n-tooltip]').forEach(el => {
         const key = el.dataset.i18nTooltip;
         if (translations[lang][key]) {
@@ -517,7 +517,7 @@ function setLanguage(lang) {
         }
     });
 
-    // Update placeholders
+
     document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
         const key = el.dataset.i18nPlaceholder;
         if (translations[lang][key]) {
@@ -525,7 +525,7 @@ function setLanguage(lang) {
         }
     });
 
-    // Update language toggle buttons
+
     const langToggle = document.getElementById('lang-toggle');
     if (langToggle) {
         langToggle.querySelectorAll('button').forEach(btn => {
@@ -533,18 +533,16 @@ function setLanguage(lang) {
         });
     }
 
-    // Re-render tracker grid with translated labels
     if (typeof renderTrackerGrid === 'function') {
         renderTrackerGrid();
     }
 
-    // Update links with language-specific URLs
     document.querySelectorAll('[data-href-en][data-href-sv]').forEach(el => {
         el.href = lang === 'en' ? el.dataset.hrefEn : el.dataset.hrefSv;
     });
 }
 
-// ===== SETTINGS DROPDOWN =====
+// Settings dropdown
 function initSettingsDropdown() {
     const settingsBtn = document.getElementById('settings-btn');
     const settingsMenu = document.getElementById('settings-menu');
@@ -553,7 +551,7 @@ function initSettingsDropdown() {
     const langToggleMobile = document.getElementById('lang-toggle-mobile');
     const themeToggleMobile = document.getElementById('theme-toggle-mobile');
 
-    // Toggle dropdown (only if settings btn exists - not on mobile)
+
     if (settingsBtn && settingsMenu) {
         settingsBtn.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -562,7 +560,7 @@ function initSettingsDropdown() {
             settingsMenu.classList.toggle('active', !isExpanded);
         });
 
-        // Close on outside click
+
         document.addEventListener('click', (e) => {
             if (!settingsMenu.contains(e.target) && !settingsBtn.contains(e.target)) {
                 settingsBtn.setAttribute('aria-expanded', 'false');
@@ -571,7 +569,7 @@ function initSettingsDropdown() {
         });
     }
 
-    // Helper to sync all language toggle buttons
+
     const syncLangToggles = (lang) => {
         [langToggle, langToggleMobile].forEach(toggle => {
             if (toggle) {
@@ -582,7 +580,7 @@ function initSettingsDropdown() {
         });
     };
 
-    // Helper to sync all theme toggle buttons
+
     const syncThemeToggles = (theme) => {
         [themeToggle, themeToggleMobile].forEach(toggle => {
             if (toggle) {
@@ -593,7 +591,7 @@ function initSettingsDropdown() {
         });
     };
 
-    // Language toggle handler
+
     const handleLangToggle = (e) => {
         if (e.target.tagName === 'BUTTON') {
             const lang = e.target.dataset.lang;
@@ -602,7 +600,7 @@ function initSettingsDropdown() {
         }
     };
 
-    // Theme toggle handler
+
     const handleThemeToggle = (e) => {
         if (e.target.tagName === 'BUTTON') {
             const theme = e.target.dataset.theme;
@@ -612,7 +610,6 @@ function initSettingsDropdown() {
         }
     };
 
-    // Initialize language toggles
     [langToggle, langToggleMobile].forEach(toggle => {
         if (toggle) {
             toggle.addEventListener('click', handleLangToggle);
@@ -620,7 +617,6 @@ function initSettingsDropdown() {
     });
     syncLangToggles(currentLang);
 
-    // Initialize theme toggles
     const savedTheme = localStorage.getItem('theme');
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     const currentTheme = savedTheme || (prefersDark ? 'dark' : 'light');
@@ -633,7 +629,7 @@ function initSettingsDropdown() {
     syncThemeToggles(currentTheme);
 }
 
-// Template copy functionality (email templates stay in Swedish)
+// Email templates
 const templates = {
     1: `Ämne: Begäran om radering enligt GDPR artikel 17
 
@@ -732,7 +728,7 @@ function showToast(message) {
     }
 }
 
-// Smooth scroll for anchor links
+// Smooth scroll
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         const href = this.getAttribute('href');
@@ -765,7 +761,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Back to top button
+// Back to top
 const backToTop = document.getElementById('back-to-top');
 if (backToTop) {
     window.addEventListener('scroll', () => {
@@ -777,22 +773,22 @@ if (backToTop) {
     });
 }
 
-// Apply saved theme on page load
+
 const savedTheme = localStorage.getItem('theme');
 if (savedTheme) {
     document.documentElement.setAttribute('data-theme', savedTheme);
 }
 
-// Apply saved language on page load
+
 if (currentLang !== 'sv') {
     setLanguage(currentLang);
 }
 
-// Initialize settings dropdown
+
 initSettingsDropdown();
 
 
-// Mobile nav toggle
+// Mobile nav
 const navToggle = document.querySelector('.nav-toggle');
 const navLinks = document.querySelector('.nav-links');
 if (navToggle && navLinks) {
@@ -807,20 +803,20 @@ if (navToggle && navLinks) {
         toggleMenu();
     });
 
-    // Close menu on outside click
+
     document.addEventListener('click', (e) => {
         if (navLinks.classList.contains('active') && !navLinks.contains(e.target) && !navToggle.contains(e.target)) {
             toggleMenu(false);
         }
     });
 
-    // Close menu when clicking nav links
+
     navLinks.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => toggleMenu(false));
     });
 }
 
-// Active nav indicator on scroll
+// Nav scroll indicator
 const navAnchors = document.querySelectorAll('.nav-links a[href^="#"]');
 const sections = [];
 
@@ -849,13 +845,13 @@ if (sections.length > 0) {
     }, { passive: true });
 }
 
-// Populate mailto links with template body and handle clicks
+// Mailto links
 document.querySelectorAll('.email-link[data-template]').forEach(link => {
     const templateNum = link.dataset.template;
     const templateText = templates[templateNum];
 
     if (templateText) {
-        // Extract subject and body from template
+
         const lines = templateText.split('\n');
         const subjectLine = lines[0];
         const subject = subjectLine.replace('Ämne: ', '');
@@ -865,7 +861,7 @@ document.querySelectorAll('.email-link[data-template]').forEach(link => {
         const mailtoUrl = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
         link.href = mailtoUrl;
 
-        // Open in new tab - keeps original page open
+
         link.addEventListener('click', (e) => {
             e.preventDefault();
             // Open mailto directly in new tab/window
@@ -878,7 +874,7 @@ document.querySelectorAll('.email-link[data-template]').forEach(link => {
     }
 });
 
-// ===== PRIVACY TRACKER =====
+// Privacy tracker
 const trackerServices = [
     {
         id: 'ratsit',
@@ -988,7 +984,7 @@ function getStatusInfo(service, serviceData) {
 
     const daysSince = getDaysSince(serviceData.lastCheck);
 
-    // Check for stale data (30+ days old)
+
     if (daysSince >= STALE_DAYS) {
         return {
             class: 'tracker-status-stale',
@@ -1017,8 +1013,6 @@ function renderTrackerGrid() {
     const grid = document.getElementById('tracker-grid');
     if (!grid) return;
 
-    // Guard clause - trackerServices may not be initialized yet during early setLanguage calls
-    // Using try-catch because const variables in TDZ throw ReferenceError even with typeof
     let services;
     try {
         services = trackerServices;
@@ -1028,7 +1022,7 @@ function renderTrackerGrid() {
 
     const data = getTrackerData();
 
-    // Check for stale services and show alert
+
     const staleCount = trackerServices.filter(service => {
         const serviceData = data.services[service.id];
         return serviceData && serviceData.lastCheck && getDaysSince(serviceData.lastCheck) >= STALE_DAYS;
@@ -1135,7 +1129,7 @@ function openTrackerEmail(serviceId) {
     const email = service.removalUrl.replace('mailto:', '');
     const templateText = templates[3]; // Follow-up template
 
-    // Extract subject and body from template
+
     const lines = templateText.split('\n');
     const subjectLine = lines[0];
     const subject = subjectLine.replace('Ämne: ', '');
@@ -1143,7 +1137,7 @@ function openTrackerEmail(serviceId) {
 
     const mailtoUrl = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
-    // Open in new tab - keeps original page open
+
     const mailWindow = window.open(mailtoUrl, '_blank');
     if (!mailWindow) {
         window.location.href = mailtoUrl;
@@ -1223,7 +1217,7 @@ function clearTrackerData() {
     overlay.addEventListener('click', handleOverlayClick);
 }
 
-// Initialize tracker
+// Tracker init
 function initTracker() {
     const toggle = document.querySelector('.tracker-toggle');
     const content = document.getElementById('tracker-content');
@@ -1235,20 +1229,20 @@ function initTracker() {
 
     if (!toggle || !content) return;
 
-    // Toggle visibility
+
     toggle.addEventListener('click', () => {
         const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
         toggle.setAttribute('aria-expanded', !isExpanded);
         content.hidden = isExpanded;
     });
 
-    // Load saved name
+
     const data = getTrackerData();
     if (nameInput && data.name) {
         nameInput.value = data.name;
     }
 
-    // Save name on change
+
     if (nameInput) {
         nameInput.addEventListener('input', () => {
             const data = getTrackerData();
@@ -1258,12 +1252,12 @@ function initTracker() {
         });
     }
 
-    // Export button
+
     if (exportBtn) {
         exportBtn.addEventListener('click', exportTrackerData);
     }
 
-    // Import button
+
     if (importBtn && importInput) {
         importBtn.addEventListener('click', () => importInput.click());
         importInput.addEventListener('change', (e) => {
@@ -1274,18 +1268,18 @@ function initTracker() {
         });
     }
 
-    // Clear button
+
     if (clearBtn) {
         clearBtn.addEventListener('click', clearTrackerData);
     }
 
-    // Notification reminder
+
     const reminderEnabled = document.getElementById('reminder-enabled');
     const reminderDays = document.getElementById('reminder-days');
     const reminderNote = document.getElementById('reminder-note');
 
     if (reminderEnabled && reminderDays && reminderNote) {
-        // Load saved preferences
+
         const savedReminder = localStorage.getItem('reminderEnabled') === 'true';
         const savedDays = localStorage.getItem('reminderDays') || '30';
         const reminderDate = localStorage.getItem('reminderDate');
@@ -1293,17 +1287,16 @@ function initTracker() {
         reminderEnabled.checked = savedReminder;
         reminderDays.value = savedDays;
 
-        // Check if notifications are supported and get permission status
         const notifSupported = 'Notification' in window;
         const notifPermission = notifSupported ? Notification.permission : 'denied';
 
-        // Disable toggle if notifications are denied
+
         if (notifPermission === 'denied') {
             reminderEnabled.disabled = true;
             reminderDays.disabled = true;
         }
 
-        // Update note - reads fresh data each time
+
         const updateReminderNote = () => {
             const currentReminderDate = localStorage.getItem('reminderDate');
 
@@ -1327,10 +1320,10 @@ function initTracker() {
         };
         updateReminderNote();
 
-        // Handle checkbox change
+
         reminderEnabled.addEventListener('change', async () => {
             if (reminderEnabled.checked) {
-                // Request notification permission only when enabling
+
                 if ('Notification' in window && Notification.permission === 'default') {
                     const permission = await Notification.requestPermission();
                     if (permission !== 'granted') {
@@ -1340,7 +1333,7 @@ function initTracker() {
                     }
                 }
 
-                // Set reminder date
+
                 const days = parseInt(reminderDays.value) || 30;
                 const date = new Date();
                 date.setDate(date.getDate() + days);
@@ -1354,7 +1347,7 @@ function initTracker() {
             updateReminderNote();
         });
 
-        // Handle days change
+
         reminderDays.addEventListener('change', () => {
             if (reminderEnabled.checked) {
                 const days = parseInt(reminderDays.value) || 30;
@@ -1366,7 +1359,7 @@ function initTracker() {
             }
         });
 
-        // Check if reminder is due
+
         if (savedReminder && reminderDate) {
             const dueDate = new Date(reminderDate);
             if (new Date() >= dueDate && 'Notification' in window && Notification.permission === 'granted') {
@@ -1374,7 +1367,7 @@ function initTracker() {
                     body: t('notif.body'),
                     icon: 'favicon.svg'
                 });
-                // Reset reminder for next cycle
+
                 const days = parseInt(savedDays) || 30;
                 const newDate = new Date();
                 newDate.setDate(newDate.getDate() + days);
@@ -1383,16 +1376,16 @@ function initTracker() {
         }
     }
 
-    // Initial render
+
     renderTrackerGrid();
 }
 
-// Make functions available globally for onclick handlers
+
 window.checkService = checkService;
 window.markService = markService;
 window.openTrackerEmail = openTrackerEmail;
 
-// Initialize when DOM is ready
+
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initTracker);
 } else {
