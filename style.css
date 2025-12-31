@@ -1023,21 +1023,37 @@ li {
     color: #6b5a2f;
 }
 
+/* Dark mode status overrides */
 @media (prefers-color-scheme: dark) {
-    .tracker-status-removed {
+    :root:not([data-theme="light"]) .tracker-status-removed {
         background: #2a3d24;
         color: #a8c9a0;
     }
 
-    .tracker-status-visible {
+    :root:not([data-theme="light"]) .tracker-status-visible {
         background: #3d2824;
         color: #d9a8a0;
     }
 
-    .tracker-status-stale {
+    :root:not([data-theme="light"]) .tracker-status-stale {
         background: #3d3524;
         color: #d9c9a0;
     }
+}
+
+:root[data-theme="dark"] .tracker-status-removed {
+    background: #2a3d24;
+    color: #a8c9a0;
+}
+
+:root[data-theme="dark"] .tracker-status-visible {
+    background: #3d2824;
+    color: #d9a8a0;
+}
+
+:root[data-theme="dark"] .tracker-status-stale {
+    background: #3d3524;
+    color: #d9c9a0;
 }
 
 .tracker-card-meta {
@@ -1072,15 +1088,25 @@ li {
 }
 
 @media (prefers-color-scheme: dark) {
-    .tracker-method-bankid {
+    :root:not([data-theme="light"]) .tracker-method-bankid {
         background: #2a3d24;
         color: #a8c9a0;
     }
 
-    .tracker-method-email {
+    :root:not([data-theme="light"]) .tracker-method-email {
         background: #3d3524;
         color: #d9c9a0;
     }
+}
+
+:root[data-theme="dark"] .tracker-method-bankid {
+    background: #2a3d24;
+    color: #a8c9a0;
+}
+
+:root[data-theme="dark"] .tracker-method-email {
+    background: #3d3524;
+    color: #d9c9a0;
 }
 
 .tracker-card-warning {
@@ -1092,10 +1118,15 @@ li {
 }
 
 @media (prefers-color-scheme: dark) {
-    .tracker-card-warning {
+    :root:not([data-theme="light"]) .tracker-card-warning {
         background: #4a3f1e;
         color: #f5dfa3;
     }
+}
+
+:root[data-theme="dark"] .tracker-card-warning {
+    background: #4a3f1e;
+    color: #f5dfa3;
 }
 
 .tracker-card-done {
@@ -1179,14 +1210,23 @@ li {
 }
 
 @media (prefers-color-scheme: dark) {
-    .tracker-card-btn:disabled::after {
+    :root:not([data-theme="light"]) .tracker-card-btn:disabled::after {
         background: #ede5d8;
         color: #1a1410;
     }
 
-    .tracker-card-btn:disabled::before {
+    :root:not([data-theme="light"]) .tracker-card-btn:disabled::before {
         border-top-color: #ede5d8;
     }
+}
+
+:root[data-theme="dark"] .tracker-card-btn:disabled::after {
+    background: #ede5d8;
+    color: #1a1410;
+}
+
+:root[data-theme="dark"] .tracker-card-btn:disabled::before {
+    border-top-color: #ede5d8;
 }
 
 .tracker-card-btn:hover {
@@ -1210,9 +1250,13 @@ li {
 }
 
 @media (prefers-color-scheme: dark) {
-    .tracker-card-btn-check {
+    :root:not([data-theme="light"]) .tracker-card-btn-check {
         color: #1a1410;
     }
+}
+
+:root[data-theme="dark"] .tracker-card-btn-check {
+    color: #1a1410;
 }
 
 .tracker-card-btn-remove {
@@ -1254,25 +1298,45 @@ li {
 }
 
 @media (prefers-color-scheme: dark) {
-    .tracker-card-btn-removed {
+    :root:not([data-theme="light"]) .tracker-card-btn-removed {
         border-color: #8fba82;
         color: #8fba82;
     }
 
-    .tracker-card-btn-removed:hover {
+    :root:not([data-theme="light"]) .tracker-card-btn-removed:hover {
         background: #5c7a4a;
         color: #fff;
     }
 
-    .tracker-card-btn-visible {
+    :root:not([data-theme="light"]) .tracker-card-btn-visible {
         border-color: #d98a7a;
         color: #d98a7a;
     }
 
-    .tracker-card-btn-visible:hover {
+    :root:not([data-theme="light"]) .tracker-card-btn-visible:hover {
         background: #a65d4c;
         color: #fff;
     }
+}
+
+:root[data-theme="dark"] .tracker-card-btn-removed {
+    border-color: #8fba82;
+    color: #8fba82;
+}
+
+:root[data-theme="dark"] .tracker-card-btn-removed:hover {
+    background: #5c7a4a;
+    color: #fff;
+}
+
+:root[data-theme="dark"] .tracker-card-btn-visible {
+    border-color: #d98a7a;
+    color: #d98a7a;
+}
+
+:root[data-theme="dark"] .tracker-card-btn-visible:hover {
+    background: #a65d4c;
+    color: #fff;
 }
 
 .tracker-actions {
@@ -1294,6 +1358,16 @@ li {
     transition: all 0.15s ease;
 }
 
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .tracker-btn {
+        color: #1a1410;
+    }
+}
+
+:root[data-theme="dark"] .tracker-btn {
+    color: #1a1410;
+}
+
 .tracker-btn:hover {
     background: var(--accent-hover);
 }
@@ -1301,7 +1375,7 @@ li {
 .tracker-btn-secondary {
     background: var(--surface);
     border-color: var(--border);
-    color: var(--text);
+    color: var(--text) !important;
 }
 
 .tracker-btn-secondary:hover {
@@ -1311,12 +1385,12 @@ li {
 .tracker-btn-danger {
     background: transparent;
     border-color: #dc3545;
-    color: #dc3545;
+    color: #dc3545 !important;
 }
 
 .tracker-btn-danger:hover {
     background: #dc3545;
-    color: #fff;
+    color: #fff !important;
 }
 
 .tracker-privacy-notice {
