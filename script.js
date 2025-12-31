@@ -550,63 +550,87 @@ function initSettingsDropdown() {
     const settingsMenu = document.getElementById('settings-menu');
     const langToggle = document.getElementById('lang-toggle');
     const themeToggle = document.getElementById('theme-toggle');
+    const langToggleMobile = document.getElementById('lang-toggle-mobile');
+    const themeToggleMobile = document.getElementById('theme-toggle-mobile');
 
-    if (!settingsBtn || !settingsMenu) return;
-
-    // Toggle dropdown
-    settingsBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const isExpanded = settingsBtn.getAttribute('aria-expanded') === 'true';
-        settingsBtn.setAttribute('aria-expanded', !isExpanded);
-        settingsMenu.classList.toggle('active', !isExpanded);
-    });
-
-    // Close on outside click
-    document.addEventListener('click', (e) => {
-        if (!settingsMenu.contains(e.target) && !settingsBtn.contains(e.target)) {
-            settingsBtn.setAttribute('aria-expanded', 'false');
-            settingsMenu.classList.remove('active');
-        }
-    });
-
-    // Language toggle
-    if (langToggle) {
-        langToggle.addEventListener('click', (e) => {
-            if (e.target.tagName === 'BUTTON') {
-                const lang = e.target.dataset.lang;
-                setLanguage(lang);
-            }
+    // Toggle dropdown (only if settings btn exists - not on mobile)
+    if (settingsBtn && settingsMenu) {
+        settingsBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isExpanded = settingsBtn.getAttribute('aria-expanded') === 'true';
+            settingsBtn.setAttribute('aria-expanded', !isExpanded);
+            settingsMenu.classList.toggle('active', !isExpanded);
         });
 
-        // Set initial state
-        langToggle.querySelectorAll('button').forEach(btn => {
-            btn.classList.toggle('active', btn.dataset.lang === currentLang);
+        // Close on outside click
+        document.addEventListener('click', (e) => {
+            if (!settingsMenu.contains(e.target) && !settingsBtn.contains(e.target)) {
+                settingsBtn.setAttribute('aria-expanded', 'false');
+                settingsMenu.classList.remove('active');
+            }
         });
     }
 
-    // Theme toggle
-    if (themeToggle) {
-        const savedTheme = localStorage.getItem('theme');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const currentTheme = savedTheme || (prefersDark ? 'dark' : 'light');
-
-        // Set initial button state
-        themeToggle.querySelectorAll('button').forEach(btn => {
-            btn.classList.toggle('active', btn.dataset.theme === currentTheme);
+    // Helper to sync all language toggle buttons
+    const syncLangToggles = (lang) => {
+        [langToggle, langToggleMobile].forEach(toggle => {
+            if (toggle) {
+                toggle.querySelectorAll('button').forEach(btn => {
+                    btn.classList.toggle('active', btn.dataset.lang === lang);
+                });
+            }
         });
+    };
 
-        themeToggle.addEventListener('click', (e) => {
-            if (e.target.tagName === 'BUTTON') {
-                const theme = e.target.dataset.theme;
-                document.documentElement.setAttribute('data-theme', theme);
-                localStorage.setItem('theme', theme);
-
-                themeToggle.querySelectorAll('button').forEach(btn => {
+    // Helper to sync all theme toggle buttons
+    const syncThemeToggles = (theme) => {
+        [themeToggle, themeToggleMobile].forEach(toggle => {
+            if (toggle) {
+                toggle.querySelectorAll('button').forEach(btn => {
                     btn.classList.toggle('active', btn.dataset.theme === theme);
                 });
             }
         });
-    }
+    };
+
+    // Language toggle handler
+    const handleLangToggle = (e) => {
+        if (e.target.tagName === 'BUTTON') {
+            const lang = e.target.dataset.lang;
+            setLanguage(lang);
+            syncLangToggles(lang);
+        }
+    };
+
+    // Theme toggle handler
+    const handleThemeToggle = (e) => {
+        if (e.target.tagName === 'BUTTON') {
+            const theme = e.target.dataset.theme;
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+            syncThemeToggles(theme);
+        }
+    };
+
+    // Initialize language toggles
+    [langToggle, langToggleMobile].forEach(toggle => {
+        if (toggle) {
+            toggle.addEventListener('click', handleLangToggle);
+        }
+    });
+    syncLangToggles(currentLang);
+
+    // Initialize theme toggles
+    const savedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const currentTheme = savedTheme || (prefersDark ? 'dark' : 'light');
+
+    [themeToggle, themeToggleMobile].forEach(toggle => {
+        if (toggle) {
+            toggle.addEventListener('click', handleThemeToggle);
+        }
+    });
+    syncThemeToggles(currentTheme);
 }
 
 // Template copy functionality (email templates stay in Swedish)

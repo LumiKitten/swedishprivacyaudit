@@ -155,6 +155,8 @@ li {
     max-width: 1400px;
     margin: 0 auto;
     padding: var(--space-sm) var(--space-md);
+    padding-right: 75px;
+    /* Space for fixed settings icon */
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -236,6 +238,11 @@ li {
 
 .nav-link-external {
     color: var(--accent) !important;
+}
+
+/* Hidden on desktop, shown in mobile hamburger menu */
+.nav-settings-mobile {
+    display: none;
 }
 
 /* ===== SETTINGS DROPDOWN ===== */
@@ -2169,13 +2176,24 @@ li {
         left: var(--space-md);
     }
 
-    /* Settings dropdown on mobile - position relative to avoid overlap with hamburger */
+    /* Hide settings icon on mobile - it appears in hamburger menu instead */
     .settings-dropdown {
-        position: absolute;
-        top: 50%;
-        right: 60px;
-        transform: translateY(-50%);
-        z-index: 1001;
+        display: none;
+    }
+
+    /* Settings section in mobile menu */
+    .nav-settings-mobile {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-sm);
+        padding-top: var(--space-sm);
+        border-top: 1px solid var(--border);
+        margin-top: var(--space-sm);
+    }
+
+    .nav-settings-mobile .settings-item {
+        border-bottom: none;
+        padding: var(--space-xs) 0;
     }
 }
 

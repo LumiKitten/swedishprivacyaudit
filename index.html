@@ -39,6 +39,40 @@
                 <span class="nav-divider"></span>
                 <a href="rattigheter/" class="nav-link-external" data-tooltip="Dina rättigheter" data-i18n="nav.rights"
                     data-i18n-tooltip="nav.rights_tooltip">Rättigheter</a>
+
+                <!-- Mobile-only settings section -->
+                <div class="nav-settings-mobile">
+                    <div class="settings-item">
+                        <span class="settings-item-label">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <circle cx="12" cy="12" r="10" />
+                                <path
+                                    d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                            </svg>
+                            <span data-i18n="settings.language">Språk</span>
+                        </span>
+                        <div class="settings-toggle" id="lang-toggle-mobile">
+                            <button data-lang="sv" class="active">SV</button>
+                            <button data-lang="en">EN</button>
+                        </div>
+                    </div>
+                    <div class="settings-item">
+                        <span class="settings-item-label">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <circle cx="12" cy="12" r="5" />
+                                <path
+                                    d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+                            </svg>
+                            <span data-i18n="settings.theme">Tema</span>
+                        </span>
+                        <div class="settings-toggle" id="theme-toggle-mobile">
+                            <button data-theme="light" data-i18n="settings.light">Ljust</button>
+                            <button data-theme="dark" data-i18n="settings.dark">Mörkt</button>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="settings-dropdown" id="settings-dropdown">
                 <button class="settings-btn" id="settings-btn" aria-label="Inställningar" aria-expanded="false">
