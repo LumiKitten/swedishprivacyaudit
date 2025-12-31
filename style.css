@@ -1845,6 +1845,16 @@ li {
     text-decoration: none;
 }
 
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .cta-button {
+        color: #1a1410;
+    }
+}
+
+:root[data-theme="dark"] .cta-button {
+    color: #1a1410;
+}
+
 /* ===== CONFIRM DIALOG ===== */
 .confirm-overlay {
     position: fixed;
