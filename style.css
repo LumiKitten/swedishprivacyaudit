@@ -686,10 +686,9 @@ li {
 }
 
 .email-item {
-    padding: var(--space-md) var(--space-md);
+    padding: var(--space-md);
     border-bottom: 1px solid var(--border);
     border-left: 3px solid var(--border);
-    margin: 0 calc(-1 * var(--space-md));
     display: grid;
     grid-template-columns: 140px 1fr;
     gap: var(--space-xs) var(--space-md);
@@ -717,9 +716,6 @@ li {
 
 .email-item-difficult {
     background: var(--bg-alt);
-    margin: 0 calc(-1 * var(--space-md));
-    padding-left: var(--space-md);
-    padding-right: var(--space-md);
     border-left-color: #a65d4c;
 }
 
