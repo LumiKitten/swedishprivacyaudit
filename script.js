@@ -722,6 +722,8 @@ Information om era skyldigheter som personuppgiftsansvarig finns på Integritets
 
 Jag förväntar mig svar inom 30 dagar i enlighet med GDPR.
 
+När raderingen bekräftats ber jag er även radera denna korrespondens, då det inte längre finns rättslig grund att spara den.
+
 Med vänliga hälsningar,
 [Ditt namn]
 [Ditt personnummer]`,
@@ -744,15 +746,19 @@ Med vänliga hälsningar,
 [Ditt namn]
 [Ditt personnummer]`,
 
-  3: `Ämne: Uppföljning – Begäran om radering enligt GDPR
+  3: `Ämne: Uppföljning – Begäran om radering enligt GDPR artikel 17
 
 Hej,
 
 Jag skickade tidigare en begäran om radering av mina personuppgifter enligt artikel 17 i GDPR.
 
-Jag har kontrollerat er tjänst och ser att mina uppgifter fortfarande är synliga. Jag ber er vänligen bekräfta att raderingen har genomförts eller informera mig om status.
+Jag har kontrollerat er tjänst och ser att mina uppgifter fortfarande är synliga. Jag begär omedelbar radering av samtliga uppgifter kopplade till mig från er databas och webbplats.
 
-Enligt artikel 12(3) i GDPR ska ni svara inom 30 dagar från ursprunglig begäran.
+I mål 6027-23 (Kammarrätten) fastslogs att databaser med kommersiellt syfte är skyldiga att följa GDPR, då de inte anses ha ett journalistiskt ändamål. Se: https://www.domstol.se/nyheter/2024/03/gdpr-kan-bli-tillamplig-trots-frivilligt-utgivningsbevis/
+
+Enligt artikel 12(3) i GDPR ska ni svara inom 30 dagar. Om jag inte får bekräftelse på att raderingen genomförts kommer jag att lämna klagomål till Integritetsskyddsmyndigheten (IMY).
+
+När raderingen bekräftats ber jag er även radera denna korrespondens, då det inte längre finns rättslig grund att spara den.
 
 Med vänliga hälsningar,
 [Ditt namn]
