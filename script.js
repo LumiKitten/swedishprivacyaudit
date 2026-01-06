@@ -996,8 +996,8 @@ const trackerServices = [
     name: "MrKoll",
     searchUrl:
       "https://mrkoll.se/resultat?n={name}&c=&min=16&max=120&sex=a&c_stat=all&company=",
-    removalUrl: "https://mrkoll.se/om/andra-uppgifter",
-    method: "BankID",
+    removalUrl: "mailto:hej@nusvar.se",
+    method: "E-post",
     warning: "Återpublicerar ofta",
   },
   {
