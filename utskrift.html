@@ -166,8 +166,25 @@
             color: #0066cc;
         }
         
+        .print-btn {
+            display: inline-block;
+            margin-left: 1cm;
+            padding: 0.3cm 0.6cm;
+            background: #0066cc;
+            color: #fff;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 10pt;
+        }
+        
+        .print-btn:hover {
+            background: #0055aa;
+        }
+        
         @media print {
-            .back-link {
+            .back-link, .print-btn {
                 display: none;
             }
             
@@ -190,6 +207,7 @@
 <body>
     <div class="back-link">
         <a href="./">← Tillbaka till den interaktiva guiden</a>
+        <button class="print-btn" onclick="window.print()">🖨️ Skriv ut (Ctrl+P)</button>
     </div>
 
     <h1>Ta bort dina personuppgifter från svenska söktjänster</h1>
@@ -355,7 +373,7 @@ Med vänliga hälsningar,
     </div>
 
     <div class="footer">
-        <p>Svenska Sekretessguiden — sekretessguiden.se — Senast uppdaterad: December 2025</p>
+        <p>Svenska Sekretessguiden — svprivacy.iliketrains.fyi — Senast uppdaterad: Januari 2026</p>
         <p>Denna guide är framtagen i informationssyfte och utgör inte juridisk rådgivning.</p>
     </div>
 </body>

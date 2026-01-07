@@ -30,7 +30,7 @@ const translations = {
     "settings.dark": "Mörkt",
 
     // Hero
-    "hero.meta": "Uppdaterad december 2025",
+    "hero.meta": "Uppdaterad januari 2026",
     "hero.title": "Ta bort dina personuppgifter från svenska söktjänster",
     "hero.lead":
       "En steg-för-steg guide för att radera din information från Ratsit, Hitta, Eniro och andra öppna register.",
@@ -188,7 +188,7 @@ const translations = {
     "alert.copy": "Kunde inte kopiera. Markera texten manuellt.",
 
     // Footer
-    "footer.updated": "Senast uppdaterad: December 2025",
+    "footer.updated": "Senast uppdaterad: Januari 2026",
     "footer.disclaimer":
       "Denna guide är framtagen i informationssyfte. För juridisk rådgivning, kontakta en kvalificerad jurist.",
 
@@ -322,7 +322,7 @@ const translations = {
     "settings.dark": "Dark",
 
     // Hero
-    "hero.meta": "Updated December 2025",
+    "hero.meta": "Updated January 2026",
     "hero.title": "Remove your personal data from Swedish search services",
     "hero.lead":
       "A step-by-step guide to delete your information from Ratsit, Hitta, Eniro and other public registers.",
@@ -477,7 +477,7 @@ const translations = {
     "alert.copy": "Could not copy. Select the text manually.",
 
     // Footer
-    "footer.updated": "Last updated: December 2025",
+    "footer.updated": "Last updated: January 2026",
     "footer.disclaimer":
       "This guide is for informational purposes. For legal advice, consult a qualified lawyer.",
 
