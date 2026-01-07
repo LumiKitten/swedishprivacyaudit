@@ -1046,6 +1046,40 @@ li {
   color: var(--text-secondary);
 }
 
+.tracker-progress {
+  margin-bottom: var(--space-lg);
+  padding: var(--space-md);
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.tracker-progress-text {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-sm);
+  font-size: 0.9375rem;
+}
+
+.tracker-progress-percent {
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.tracker-progress-bar {
+  height: 8px;
+  background: var(--bg-alt);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.tracker-progress-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
 .tracker-name-section {
   margin-bottom: var(--space-lg);
 }
@@ -2271,6 +2305,6 @@ li {
 
 /* ===== ACTIVE NAV INDICATOR ===== */
 .nav-links a.active {
-  color: var(--text);
-  border-bottom-color: var(--accent);
+    color: var(--text);
+    border-bottom-color: var(--accent);
 }

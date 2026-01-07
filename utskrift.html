@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Utskriftsversion av guiden för att ta bort personuppgifter från svenska söktjänster.">
+    <meta name="robots" content="noindex">
+    <title>Utskriftsversion - Svenska Sekretessguiden</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 11pt;
+            line-height: 1.6;
+            color: #000;
+            max-width: 21cm;
+            margin: 0 auto;
+            padding: 1.5cm;
+        }
+        
+        h1 {
+            font-size: 18pt;
+            margin-bottom: 0.3cm;
+            border-bottom: 2px solid #000;
+            padding-bottom: 0.3cm;
+        }
+        
+        .subtitle {
+            font-size: 11pt;
+            color: #444;
+            margin-bottom: 1cm;
+        }
+        
+        h2 {
+            font-size: 14pt;
+            margin-top: 0.8cm;
+            margin-bottom: 0.4cm;
+            border-bottom: 1px solid #999;
+            padding-bottom: 0.2cm;
+        }
+        
+        h3 {
+            font-size: 12pt;
+            margin-top: 0.5cm;
+            margin-bottom: 0.2cm;
+        }
+        
+        p {
+            margin-bottom: 0.3cm;
+        }
+        
+        .step {
+            margin-bottom: 0.8cm;
+            page-break-inside: avoid;
+        }
+        
+        .step-number {
+            font-weight: bold;
+            font-size: 12pt;
+        }
+        
+        .service {
+            border: 1px solid #ccc;
+            padding: 0.4cm;
+            margin-bottom: 0.3cm;
+            page-break-inside: avoid;
+        }
+        
+        .service-name {
+            font-weight: bold;
+            font-size: 11pt;
+        }
+        
+        .service-url {
+            font-family: 'Courier New', monospace;
+            font-size: 9pt;
+            color: #333;
+        }
+        
+        .service-action {
+            font-size: 10pt;
+            color: #555;
+            font-style: italic;
+        }
+        
+        .operator-list {
+            margin-left: 0.5cm;
+            margin-bottom: 0.4cm;
+        }
+        
+        .operator-list li {
+            margin-bottom: 0.1cm;
+        }
+        
+        .template {
+            border: 2px solid #000;
+            padding: 0.5cm;
+            margin-bottom: 0.6cm;
+            page-break-inside: avoid;
+        }
+        
+        .template h3 {
+            margin-top: 0;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 0.2cm;
+        }
+        
+        .template-body {
+            font-size: 10pt;
+            white-space: pre-wrap;
+            font-family: Georgia, serif;
+            line-height: 1.5;
+        }
+        
+        .email-list {
+            margin-bottom: 0.5cm;
+        }
+        
+        .email-item {
+            padding: 0.2cm 0;
+            border-bottom: 1px dotted #ccc;
+        }
+        
+        .email-name {
+            font-weight: bold;
+        }
+        
+        .email-address {
+            font-family: 'Courier New', monospace;
+            font-size: 10pt;
+        }
+        
+        .note {
+            font-size: 10pt;
+            color: #555;
+            font-style: italic;
+        }
+        
+        .quote {
+            border-left: 3px solid #999;
+            padding-left: 0.4cm;
+            font-style: italic;
+            margin: 0.4cm 0;
+        }
+        
+        .footer {
+            margin-top: 1cm;
+            padding-top: 0.3cm;
+            border-top: 1px solid #999;
+            font-size: 9pt;
+            color: #666;
+            text-align: center;
+        }
+        
+        .back-link {
+            text-align: center;
+            margin-bottom: 0.5cm;
+        }
+        
+        .back-link a {
+            color: #0066cc;
+        }
+        
+        @media print {
+            .back-link {
+                display: none;
+            }
+            
+            body {
+                padding: 0;
+            }
+        }
+        
+        @media screen {
+            body {
+                background: #f5f5f5;
+            }
+            
+            body > * {
+                background: #fff;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="back-link">
+        <a href="./">← Tillbaka till den interaktiva guiden</a>
+    </div>
+
+    <h1>Ta bort dina personuppgifter från svenska söktjänster</h1>
+    <p class="subtitle">En steg-för-steg guide för att radera din information från Ratsit, Hitta, Eniro och andra öppna register.</p>
+
+    <!-- STEG 1 -->
+    <div class="step">
+        <h2><span class="step-number">01</span> Grundförutsättningar</h2>
+        <p class="note">Utan dessa steg återkommer din information inom 30 dagar</p>
+        
+        <h3>Hemligt telefonnummer</h3>
+        <p>Söktjänster köper data från telekomoperatörer. Stäng av denna källa först.</p>
+        <div class="quote">"Jag vill ha hemligt telefonnummer och drar tillbaka mitt samtycke till nummerupplysning och marknadsföring."</div>
+        
+        <p><strong>Kontakta din operatör:</strong></p>
+        <ul class="operator-list">
+            <li><strong>Telia</strong> – telia.se/privat/mitt-telia eller ring 90 200</li>
+            <li><strong>Tele2</strong> – tele2.se/mitt-tele2 eller ring 90 222</li>
+            <li><strong>Telenor</strong> – telenor.se/mitt-telenor eller ring 020-222 222</li>
+            <li><strong>Tre</strong> – tre.se/mitt3 eller ring 0735-300 400</li>
+        </ul>
+        
+        <div class="service">
+            <div class="service-name">SPAR-registret</div>
+            <p>Stoppa staten från att sälja din adress till marknadsförare.</p>
+            <div class="service-url">statenspersonadressregister.se</div>
+            <div class="service-action">Logga in med BankID → Aktivera reklamsparr</div>
+        </div>
+        
+        <div class="service">
+            <div class="service-name">NIX-telefon</div>
+            <p>Blockera oönskade säljsamtal.</p>
+            <div class="service-url">nixtelefon.org</div>
+            <div class="service-action">Ange ditt telefonnummer</div>
+        </div>
+        
+        <div class="service">
+            <div class="service-name">NIX-adresserat</div>
+            <p>Stoppa adresserad direktreklam.</p>
+            <div class="service-url">swedma.se/nix-adresserat</div>
+            <div class="service-action">Registrera via BankID</div>
+        </div>
+    </div>
+
+    <!-- STEG 2 -->
+    <div class="step">
+        <h2><span class="step-number">02</span> Ta bort från söktjänster</h2>
+        <p class="note">Använd dessa direktlänkar för borttagning via BankID</p>
+        
+        <div class="service">
+            <div class="service-name">Ratsit</div>
+            <div class="service-url">ratsit.se/tabort</div>
+            <div class="service-action">Logga in med BankID → Bekräfta (permanent borttagning)</div>
+        </div>
+        
+        <div class="service">
+            <div class="service-name">Hitta.se</div>
+            <div class="service-url">hitta.se/kontakta-oss/ta-bort-kontaktsida</div>
+            <div class="service-action">Signera med BankID</div>
+        </div>
+        
+        <div class="service">
+            <div class="service-name">Eniro</div>
+            <div class="service-url">uppdatera.eniro.se/person</div>
+            <div class="service-action">Logga in med BankID → "Ta bort profil helt"</div>
+        </div>
+        
+        <div class="service">
+            <div class="service-name">Merinfo</div>
+            <div class="service-url">merinfo.se/ta-bort-mina-uppgifter</div>
+            <div class="service-action">Logga in med BankID</div>
+        </div>
+        
+        <div class="service">
+            <div class="service-name">MrKoll</div>
+            <div class="service-url">mrkoll.se/om/andra-uppgifter</div>
+            <div class="service-action">Välj "Dölj" för adress och telefon</div>
+            <p class="note">⚠️ Återpublicerar ofta efter 30 dagar – kontrollera regelbundet</p>
+        </div>
+        
+        <div class="service">
+            <div class="service-name">Birthday.se</div>
+            <p>Maila info@birthday.se för länk till hanteringsportalen, logga sedan in med BankID och välj "Helt dold".</p>
+        </div>
+    </div>
+
+    <!-- STEG 3 -->
+    <div class="step">
+        <h2><span class="step-number">03</span> Tjänster som kräver e-post</h2>
+        <p class="note">Dessa har inte BankID-verifiering eller hävdar undantag</p>
+        
+        <div class="email-list">
+            <div class="email-item">
+                <span class="email-name">Upplysning.se</span> — 
+                <span class="email-address">info@upplysning.se</span>
+            </div>
+            <div class="email-item">
+                <span class="email-name">Krimfup.se</span> — 
+                <span class="email-address">info@krimfup.se</span>
+                <span class="note">(svår att få borttagning från)</span>
+            </div>
+            <div class="email-item">
+                <span class="email-name">Lexbase.se</span> — 
+                <span class="email-address">info@lexbase.se</span>
+                <span class="note">(hävdar utgivningsbevis)</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- STEG 4 -->
+    <div class="step">
+        <h2><span class="step-number">04</span> Ta bort från sökresultat</h2>
+        <p>Google kan visa cachade resultat i flera veckor efter borttagning.</p>
+        <div class="service-url">search.google.com/search-console/remove-outdated-content</div>
+        <p>Ange URL:en till din tidigare profilsida → "Request Removal"</p>
+    </div>
+
+    <!-- MALLAR -->
+    <h2>E-postmallar</h2>
+    
+    <div class="template">
+        <h3>Mall 1: Standardbegäran</h3>
+        <div class="template-body">Ämne: Begäran om radering enligt GDPR artikel 17
+
+Hej,
+
+Jag vill härmed utöva min rätt till radering med stöd av artikel 17 i dataskyddsförordningen.
+
+Jag begär att ni raderar mitt namn, adress och födelsedatum från era register.
+
+Information om era skyldigheter som personuppgiftsansvarig finns på Integritetsskyddsmyndighetens webbplats (www.imy.se).
+
+Jag förväntar mig svar inom 30 dagar i enlighet med GDPR.
+
+När raderingen bekräftats ber jag er även radera denna korrespondens, då det inte längre finns rättslig grund att spara den.
+
+Med vänliga hälsningar,
+[Ditt namn]
+[Ditt personnummer]</div>
+    </div>
+
+    <div class="template">
+        <h3>Mall 2: Begäran med rättslig hänvisning</h3>
+        <p class="note">För tjänster som hävdar utgivningsbevis eller inte svarar.</p>
+        <div class="template-body">Ämne: Begäran om radering enligt GDPR artikel 17 – Hänvisning till mål 6027-23
+
+Hej,
+
+Jag begär härmed radering av mina personuppgifter med stöd av artikel 17 i GDPR.
+
+Jag begär att samtliga uppgifter kopplade till mig raderas från er databas och webbplats.
+
+I mål 6027-23 (Kammarrätten) fastslogs att databaser med kommersiellt syfte är skyldiga att följa GDPR, då de inte anses ha ett journalistiskt ändamål.
+Se: domstol.se/nyheter/2024/03/gdpr-kan-bli-tillamplig-trots-frivilligt-utgivningsbevis/
+
+Enligt artikel 12(3) i GDPR ska ni svara inom 30 dagar. Om jag inte får svar kommer jag att lämna klagomål till Integritetsskyddsmyndigheten (IMY).
+
+När raderingen bekräftats ber jag er även radera denna korrespondens.
+
+Med vänliga hälsningar,
+[Ditt namn]
+[Ditt personnummer]</div>
+    </div>
+
+    <div class="footer">
+        <p>Svenska Sekretessguiden — sekretessguiden.se — Senast uppdaterad: December 2025</p>
+        <p>Denna guide är framtagen i informationssyfte och utgör inte juridisk rådgivning.</p>
+    </div>
+</body>
+</html>

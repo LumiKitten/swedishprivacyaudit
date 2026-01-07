@@ -38,6 +38,7 @@ const translations = {
     // Intro
     "intro.text":
       "Denna guide innehåller direktlänkar till borttagningssidor samt juridiska mallar med hänvisning till aktuella rättsfall. De flesta guider online är ofullständiga eller föråldrade.",
+    "intro.print": "🖨️ Skriv ut guiden",
 
     // Step 1
     "step1.title": "Grundförutsättningar",
@@ -140,6 +141,8 @@ const translations = {
     "tracker.title": "Spåra din status",
     "tracker.intro":
       "Håll koll på vilka tjänster som fortfarande visar dina uppgifter. All data sparas endast lokalt i din webbläsare.",
+    "tracker.progress": "Framsteg",
+    "tracker.progress.done": "klara",
     "tracker.name.label": "Ditt namn (för söklänkar)",
     "tracker.name.placeholder": "Förnamn Efternamn",
     "tracker.export": "Exportera data",
@@ -326,7 +329,8 @@ const translations = {
 
     // Intro
     "intro.text":
-      "This guide contains direct links to removal pages and legal templates referencing current case law. Most online guides are incomplete or outdated.",
+      "This guide contains direct links to removal pages and legal templates with reference to current case law. Most guides online are incomplete or outdated.",
+    "intro.print": "🖨️ Print the guide",
 
     // Step 1
     "step1.title": "Prerequisites",
@@ -428,6 +432,8 @@ const translations = {
     "tracker.title": "Track Your Status",
     "tracker.intro":
       "Keep track of which services still show your information. All data is stored only locally in your browser.",
+    "tracker.progress": "Progress",
+    "tracker.progress.done": "completed",
     "tracker.name.label": "Your name (for search links)",
     "tracker.name.placeholder": "First Last",
     "tracker.export": "Export Data",
@@ -1127,6 +1133,34 @@ function renderTrackerGrid() {
   }
 
   const data = getTrackerData();
+
+  // Progress bar
+  const totalServices = trackerServices.length;
+  const completedServices = trackerServices.filter((service) => {
+    const serviceData = data.services[service.id];
+    return serviceData && serviceData.status === "removed";
+  }).length;
+  const progressPercent = Math.round((completedServices / totalServices) * 100);
+
+  let progressEl = document.getElementById("tracker-progress");
+  if (!progressEl) {
+    progressEl = document.createElement("div");
+    progressEl.id = "tracker-progress";
+    progressEl.className = "tracker-progress";
+    const introEl = document.querySelector(".tracker-intro");
+    if (introEl) {
+      introEl.after(progressEl);
+    }
+  }
+  progressEl.innerHTML = `
+    <div class="tracker-progress-text">
+      <span>${t("tracker.progress")}: <strong>${completedServices}/${totalServices}</strong> ${t("tracker.progress.done")}</span>
+      <span class="tracker-progress-percent">${progressPercent}%</span>
+    </div>
+    <div class="tracker-progress-bar">
+      <div class="tracker-progress-fill" style="width: ${progressPercent}%"></div>
+    </div>
+  `;
 
   const staleCount = trackerServices.filter((service) => {
     const serviceData = data.services[service.id];
