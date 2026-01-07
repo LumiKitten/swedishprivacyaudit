@@ -151,7 +151,9 @@ const translations = {
     "tracker.reminder": "Påminn mig att kontrollera igen om",
     "tracker.reminder.days": "dagar",
     "tracker.btn.search": "Sök",
-    "tracker.btn.mail": "Maila",
+    "tracker.btn.mail": "E-post",
+    "tracker.btn.mail.first": "Första begäran",
+    "tracker.btn.mail.followup": "Uppföljning",
     "tracker.btn.remove": "Ta bort",
     "tracker.btn.done": "Klar",
     "tracker.btn.visible": "Kvar",
@@ -438,6 +440,8 @@ const translations = {
     "tracker.reminder.days": "days",
     "tracker.btn.search": "Search",
     "tracker.btn.mail": "Email",
+    "tracker.btn.mail.first": "First request",
+    "tracker.btn.mail.followup": "Follow-up",
     "tracker.btn.remove": "Remove",
     "tracker.btn.done": "Done",
     "tracker.btn.visible": "Still there",
@@ -1195,26 +1199,18 @@ function renderTrackerGrid() {
                     </button>
                     ${
                       isEmail
-                        ? `<button class="tracker-card-btn tracker-card-btn-remove" 
-                                   onclick="openTrackerEmail('${service.id}')"
-                                   ${
-                                     !isVisible
-                                       ? `disabled data-tooltip="${t(
-                                           "tracker.tooltip.markvisible"
-                                         )}"`
-                                       : ""
-                                   }>${t("tracker.btn.mail")}</button>`
+                        ? `<div class="tracker-email-dropdown">
+                                   <button class="tracker-card-btn tracker-card-btn-remove tracker-email-toggle" 
+                                           onclick="toggleEmailDropdown('${service.id}')">${t("tracker.btn.mail")} ▾</button>
+                                   <div class="tracker-email-menu" id="email-menu-${service.id}">
+                                       <button onclick="openTrackerEmail('${service.id}', 2)">${t("tracker.btn.mail.first")}</button>
+                                       <button onclick="openTrackerEmail('${service.id}', 3)">${t("tracker.btn.mail.followup")}</button>
+                                   </div>
+                               </div>`
                         : `<button class="tracker-card-btn tracker-card-btn-remove" 
                                    onclick="window.open('${
                                      service.removalUrl
-                                   }', '_blank')"
-                                   ${
-                                     !isVisible
-                                       ? `disabled data-tooltip="${t(
-                                           "tracker.tooltip.markvisible"
-                                         )}"`
-                                       : ""
-                                   }>${t("tracker.btn.remove")}</button>`
+                                   }', '_blank')">${t("tracker.btn.remove")}</button>`
                     }
                     <button class="tracker-card-btn tracker-card-btn-removed" 
                             onclick="markService('${service.id}', 'removed')">
@@ -1261,12 +1257,39 @@ function markService(serviceId, status) {
   showToast(t("toast.status"));
 }
 
-function openTrackerEmail(serviceId) {
+function toggleEmailDropdown(serviceId) {
+  const menu = document.getElementById(`email-menu-${serviceId}`);
+  if (!menu) return;
+  
+  // Close all other dropdowns first
+  document.querySelectorAll('.tracker-email-menu.active').forEach(m => {
+    if (m.id !== `email-menu-${serviceId}`) {
+      m.classList.remove('active');
+    }
+  });
+  
+  menu.classList.toggle('active');
+}
+
+// Close dropdown when clicking outside
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.tracker-email-dropdown')) {
+    document.querySelectorAll('.tracker-email-menu.active').forEach(m => {
+      m.classList.remove('active');
+    });
+  }
+});
+
+function openTrackerEmail(serviceId, templateNum) {
   const service = trackerServices.find((s) => s.id === serviceId);
   if (!service || !service.removalUrl.startsWith("mailto:")) return;
 
+  // Close the dropdown
+  const menu = document.getElementById(`email-menu-${serviceId}`);
+  if (menu) menu.classList.remove('active');
+
   const email = service.removalUrl.replace("mailto:", "");
-  const templateText = templates[3]; // Follow-up template
+  const templateText = templates[templateNum];
 
   const lines = templateText.split("\n");
   const subjectLine = lines[0];
